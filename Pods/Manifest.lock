@@ -1,0 +1,38 @@
+PODS:
+  - FastttCamera (0.3.4):
+    - FastttCamera/Default (= 0.3.4)
+  - FastttCamera/Default (0.3.4)
+  - FLAnimatedImage (1.0.12)
+  - GPUImage (0.1.7)
+  - LLSimpleCamera (5.0.0)
+  - LLVideoEditor (1.0.0)
+  - SVProgressHUD (2.2.5)
+
+DEPENDENCIES:
+  - FastttCamera
+  - FLAnimatedImage (~> 1.0)
+  - GPUImage
+  - LLSimpleCamera
+  - LLVideoEditor (~> 1.0)
+  - SVProgressHUD
+
+SPEC REPOS:
+  https://github.com/cocoapods/specs.git:
+    - FastttCamera
+    - FLAnimatedImage
+    - GPUImage
+    - LLSimpleCamera
+    - LLVideoEditor
+    - SVProgressHUD
+
+SPEC CHECKSUMS:
+  FastttCamera: 51f16712cbd5bdb08bc6231b957325c6be5e478d
+  FLAnimatedImage: 4a0b56255d9b05f18b6dd7ee06871be5d3b89e31
+  GPUImage: 733a5f0fab92df9de1c37ba9df520a833ccb406d
+  LLSimpleCamera: 7175ccb81be71c83d79933089322eb662b1f0327
+  LLVideoEditor: f287ea4a532dade2b40ba042c80bf76a546325e5
+  SVProgressHUD: 1428aafac632c1f86f62aa4243ec12008d7a51d6
+
+PODFILE CHECKSUM: 5c75988ba3b5d0778ad0f3c97b1ec637376e86f3
+
+COCOAPODS: 1.5.3

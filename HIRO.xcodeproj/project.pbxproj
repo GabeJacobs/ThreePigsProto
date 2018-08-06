@@ -1,0 +1,445 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 50;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		2315855E21023E51006AE508 /* HRBookPageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2315855D21023E51006AE508 /* HRBookPageViewController.m */; };
+		23CC1A6E20D4511B00AB6E51 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 23CC1A6D20D4511B00AB6E51 /* AppDelegate.m */; };
+		23CC1A7120D4511B00AB6E51 /* HRMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 23CC1A7020D4511B00AB6E51 /* HRMenuViewController.m */; };
+		23CC1A7420D4511B00AB6E51 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 23CC1A7220D4511B00AB6E51 /* Main.storyboard */; };
+		23CC1A7620D4511C00AB6E51 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 23CC1A7520D4511C00AB6E51 /* Assets.xcassets */; };
+		23CC1A7920D4511C00AB6E51 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 23CC1A7720D4511C00AB6E51 /* LaunchScreen.storyboard */; };
+		23CC1A7C20D4511C00AB6E51 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 23CC1A7B20D4511C00AB6E51 /* main.m */; };
+		23CC1A8420D4714F00AB6E51 /* HRCameraSceneViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 23CC1A8320D4714F00AB6E51 /* HRCameraSceneViewController.m */; };
+		23CC1A8720D472AB00AB6E51 /* HRBaseNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 23CC1A8620D472AB00AB6E51 /* HRBaseNavigationController.m */; };
+		23DAB57A2118C1590037E5E2 /* Loop.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 23DAB5792118C1590037E5E2 /* Loop.mp3 */; };
+		A98DD5A82114E15600CE33CD /* SCENE1.gif in Resources */ = {isa = PBXBuildFile; fileRef = A98DD5A72114E15500CE33CD /* SCENE1.gif */; };
+		BAB9E43147C88C298086404C /* libPods-HIRO.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 83B372C2F7B256C612F8E2AA /* libPods-HIRO.a */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		2315855C21023E51006AE508 /* HRBookPageViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HRBookPageViewController.h; sourceTree = "<group>"; };
+		2315855D21023E51006AE508 /* HRBookPageViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HRBookPageViewController.m; sourceTree = "<group>"; };
+		23CC1A6920D4511B00AB6E51 /* HIRO.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HIRO.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		23CC1A6C20D4511B00AB6E51 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		23CC1A6D20D4511B00AB6E51 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		23CC1A6F20D4511B00AB6E51 /* HRMenuViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HRMenuViewController.h; sourceTree = "<group>"; };
+		23CC1A7020D4511B00AB6E51 /* HRMenuViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HRMenuViewController.m; sourceTree = "<group>"; };
+		23CC1A7320D4511B00AB6E51 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		23CC1A7520D4511C00AB6E51 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		23CC1A7820D4511C00AB6E51 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		23CC1A7A20D4511C00AB6E51 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		23CC1A7B20D4511C00AB6E51 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		23CC1A8220D4714F00AB6E51 /* HRCameraSceneViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HRCameraSceneViewController.h; sourceTree = "<group>"; };
+		23CC1A8320D4714F00AB6E51 /* HRCameraSceneViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HRCameraSceneViewController.m; sourceTree = "<group>"; };
+		23CC1A8520D472AB00AB6E51 /* HRBaseNavigationController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HRBaseNavigationController.h; sourceTree = "<group>"; };
+		23CC1A8620D472AB00AB6E51 /* HRBaseNavigationController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HRBaseNavigationController.m; sourceTree = "<group>"; };
+		23DAB5792118C1590037E5E2 /* Loop.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Loop.mp3; sourceTree = "<group>"; };
+		7B9EAB806A1566A80FCC60CE /* Pods-HIRO.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HIRO.release.xcconfig"; path = "Pods/Target Support Files/Pods-HIRO/Pods-HIRO.release.xcconfig"; sourceTree = "<group>"; };
+		83B372C2F7B256C612F8E2AA /* libPods-HIRO.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-HIRO.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		A98DD5A72114E15500CE33CD /* SCENE1.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = SCENE1.gif; sourceTree = "<group>"; };
+		CE8079098840D1B0B9254F36 /* Pods-HIRO.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HIRO.debug.xcconfig"; path = "Pods/Target Support Files/Pods-HIRO/Pods-HIRO.debug.xcconfig"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		23CC1A6620D4511B00AB6E51 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BAB9E43147C88C298086404C /* libPods-HIRO.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		23CC1A6020D4511B00AB6E51 = {
+			isa = PBXGroup;
+			children = (
+				23CC1A6B20D4511B00AB6E51 /* HIRO */,
+				23CC1A6A20D4511B00AB6E51 /* Products */,
+				D3CFD524D40F8EED2C85F8B3 /* Pods */,
+				7A0AF09ABB4CEE8E341AA170 /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		23CC1A6A20D4511B00AB6E51 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				23CC1A6920D4511B00AB6E51 /* HIRO.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		23CC1A6B20D4511B00AB6E51 /* HIRO */ = {
+			isa = PBXGroup;
+			children = (
+				23DAB5792118C1590037E5E2 /* Loop.mp3 */,
+				A98DD5A72114E15500CE33CD /* SCENE1.gif */,
+				23CC1A6C20D4511B00AB6E51 /* AppDelegate.h */,
+				23CC1A6D20D4511B00AB6E51 /* AppDelegate.m */,
+				23CC1A6F20D4511B00AB6E51 /* HRMenuViewController.h */,
+				23CC1A7020D4511B00AB6E51 /* HRMenuViewController.m */,
+				2315855C21023E51006AE508 /* HRBookPageViewController.h */,
+				2315855D21023E51006AE508 /* HRBookPageViewController.m */,
+				23CC1A8220D4714F00AB6E51 /* HRCameraSceneViewController.h */,
+				23CC1A8320D4714F00AB6E51 /* HRCameraSceneViewController.m */,
+				23CC1A8520D472AB00AB6E51 /* HRBaseNavigationController.h */,
+				23CC1A8620D472AB00AB6E51 /* HRBaseNavigationController.m */,
+				23CC1A7220D4511B00AB6E51 /* Main.storyboard */,
+				23CC1A7520D4511C00AB6E51 /* Assets.xcassets */,
+				23CC1A7720D4511C00AB6E51 /* LaunchScreen.storyboard */,
+				23CC1A7A20D4511C00AB6E51 /* Info.plist */,
+				23CC1A7B20D4511C00AB6E51 /* main.m */,
+			);
+			path = HIRO;
+			sourceTree = "<group>";
+		};
+		7A0AF09ABB4CEE8E341AA170 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				83B372C2F7B256C612F8E2AA /* libPods-HIRO.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		D3CFD524D40F8EED2C85F8B3 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				CE8079098840D1B0B9254F36 /* Pods-HIRO.debug.xcconfig */,
+				7B9EAB806A1566A80FCC60CE /* Pods-HIRO.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		23CC1A6820D4511B00AB6E51 /* HIRO */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 23CC1A7F20D4511C00AB6E51 /* Build configuration list for PBXNativeTarget "HIRO" */;
+			buildPhases = (
+				3528076FD1C17487088E1429 /* [CP] Check Pods Manifest.lock */,
+				23CC1A6520D4511B00AB6E51 /* Sources */,
+				23CC1A6620D4511B00AB6E51 /* Frameworks */,
+				23CC1A6720D4511B00AB6E51 /* Resources */,
+				E04D22A2A71C1F0CA584B24E /* [CP] Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = HIRO;
+			productName = HIRO;
+			productReference = 23CC1A6920D4511B00AB6E51 /* HIRO.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		23CC1A6120D4511B00AB6E51 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0940;
+				ORGANIZATIONNAME = "Gabe Jacobs";
+				TargetAttributes = {
+					23CC1A6820D4511B00AB6E51 = {
+						CreatedOnToolsVersion = 9.4.1;
+					};
+				};
+			};
+			buildConfigurationList = 23CC1A6420D4511B00AB6E51 /* Build configuration list for PBXProject "HIRO" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 23CC1A6020D4511B00AB6E51;
+			productRefGroup = 23CC1A6A20D4511B00AB6E51 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				23CC1A6820D4511B00AB6E51 /* HIRO */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		23CC1A6720D4511B00AB6E51 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A98DD5A82114E15600CE33CD /* SCENE1.gif in Resources */,
+				23CC1A7920D4511C00AB6E51 /* LaunchScreen.storyboard in Resources */,
+				23DAB57A2118C1590037E5E2 /* Loop.mp3 in Resources */,
+				23CC1A7620D4511C00AB6E51 /* Assets.xcassets in Resources */,
+				23CC1A7420D4511B00AB6E51 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		3528076FD1C17487088E1429 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-HIRO-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		E04D22A2A71C1F0CA584B24E /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-HIRO/Pods-HIRO-resources.sh",
+				"${PODS_ROOT}/GPUImage/framework/Resources/lookup.png",
+				"${PODS_ROOT}/GPUImage/framework/Resources/lookup_amatorka.png",
+				"${PODS_ROOT}/GPUImage/framework/Resources/lookup_miss_etikate.png",
+				"${PODS_ROOT}/GPUImage/framework/Resources/lookup_soft_elegance_1.png",
+				"${PODS_ROOT}/GPUImage/framework/Resources/lookup_soft_elegance_2.png",
+				"${PODS_ROOT}/SVProgressHUD/SVProgressHUD/SVProgressHUD.bundle",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/lookup.png",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/lookup_amatorka.png",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/lookup_miss_etikate.png",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/lookup_soft_elegance_1.png",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/lookup_soft_elegance_2.png",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/SVProgressHUD.bundle",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-HIRO/Pods-HIRO-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		23CC1A6520D4511B00AB6E51 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2315855E21023E51006AE508 /* HRBookPageViewController.m in Sources */,
+				23CC1A8420D4714F00AB6E51 /* HRCameraSceneViewController.m in Sources */,
+				23CC1A7120D4511B00AB6E51 /* HRMenuViewController.m in Sources */,
+				23CC1A7C20D4511C00AB6E51 /* main.m in Sources */,
+				23CC1A8720D472AB00AB6E51 /* HRBaseNavigationController.m in Sources */,
+				23CC1A6E20D4511B00AB6E51 /* AppDelegate.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		23CC1A7220D4511B00AB6E51 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				23CC1A7320D4511B00AB6E51 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		23CC1A7720D4511C00AB6E51 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				23CC1A7820D4511C00AB6E51 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		23CC1A7D20D4511C00AB6E51 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		23CC1A7E20D4511C00AB6E51 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		23CC1A8020D4511C00AB6E51 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = CE8079098840D1B0B9254F36 /* Pods-HIRO.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 3939LRJ2J8;
+				INFOPLIST_FILE = HIRO/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = gabejacobs.HIRO;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = 2;
+			};
+			name = Debug;
+		};
+		23CC1A8120D4511C00AB6E51 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 7B9EAB806A1566A80FCC60CE /* Pods-HIRO.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 3939LRJ2J8;
+				INFOPLIST_FILE = HIRO/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = gabejacobs.HIRO;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = 2;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		23CC1A6420D4511B00AB6E51 /* Build configuration list for PBXProject "HIRO" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				23CC1A7D20D4511C00AB6E51 /* Debug */,
+				23CC1A7E20D4511C00AB6E51 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		23CC1A7F20D4511C00AB6E51 /* Build configuration list for PBXNativeTarget "HIRO" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				23CC1A8020D4511C00AB6E51 /* Debug */,
+				23CC1A8120D4511C00AB6E51 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 23CC1A6120D4511B00AB6E51 /* Project object */;
+}
