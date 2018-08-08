@@ -28,6 +28,7 @@
 @property (nonatomic, strong) NSTimer * timer;
 @property (strong, nonatomic) NSURL *videoURL;
 @property (strong, nonatomic) MPMoviePlayerController *videoController;
+@property (strong, nonatomic) UIButton *recordButton;
 
 @property (strong, nonatomic) UIImageView *firstFrameView;
 

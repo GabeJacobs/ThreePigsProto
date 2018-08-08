@@ -13,6 +13,7 @@
 #import <Photos/Photos.h>
 #import <AVFoundation/AVFoundation.h>
 #import <AVKit/AVKit.h>
+#import "HRConfirmVideoViewController.h"
 
 @import MobileCoreServices;
 
@@ -38,6 +39,12 @@
 - (void)viewDidLoad {
     
     [super viewDidLoad];
+    
+    [[NSNotificationCenter defaultCenter]
+     postNotificationName:@"StopMusic"
+     object:self];
+
+    
     self.view.backgroundColor = [UIColor whiteColor];
     
     ////
@@ -58,20 +65,31 @@
     self.camera = [[LLSimpleCamera alloc] initWithQuality:AVCaptureSessionPresetHigh
                                                  position:LLCameraPositionRear
                                              videoEnabled:YES];
-    [self.camera attachToViewController:self withFrame:CGRectMake(0, 0, screenRect.size.width, screenRect.size.height)];
+//    [self.camera attachToViewController:self withFrame:CGRectMake(screenRect.size.width - (screenRect.size.width*.75), screenRect.size.height - (screenRect.size.height*.75), screenRect.size.width*.75, screenRect.size.height*.75)];
+        [self.camera attachToViewController:self withFrame:CGRectMake(0, 0, screenRect.size.width, screenRect.size.height)];
+
     [self.camera start];
 
     self.firstFrameView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"SC1-Back"]];
     self.firstFrameView.frame = self.view.frame;
     [self.view addSubview:self.firstFrameView];
     
-    UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
-    button.backgroundColor = [UIColor whiteColor];
-    button.frame = CGRectMake(self.view.frame.size.width/2 - 50, self.view.frame.size.height - 100, 100, 50);
-    [button setTitle:@"Record" forState:UIControlStateNormal];
-    [button setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-    [button addTarget:self action:@selector(tappedRecord) forControlEvents:UIControlEventTouchUpInside];
-    [self.view addSubview:button];
+    
+    self.recordButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    self.recordButton.backgroundColor = [UIColor colorWithRed:0.24 green:0.47 blue:0.85 alpha:1.0];
+    self.recordButton.imageView.layer.cornerRadius = 7.0f;
+    self.recordButton.layer.shadowOffset = CGSizeMake(0, 7);
+    self.recordButton.layer.shadowRadius = 5;
+    self.recordButton.layer.shadowOpacity = 0.25;
+    self.recordButton.layer.shadowColor = [UIColor blackColor].CGColor;
+    self.recordButton.layer.masksToBounds = NO;
+    self.recordButton.frame = CGRectMake(self.view.frame.size.width/2 - 50, self.view.frame.size.height - 100, 100, 50);
+    [self.recordButton addTarget:self action:@selector(tappedRecord) forControlEvents:UIControlEventTouchUpInside];
+    [self.recordButton setTitle:@"Record" forState:UIControlStateNormal];
+    self.recordButton.titleLabel.font = [UIFont systemFontOfSize:20];
+    [self.recordButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    [self.view addSubview:self.recordButton];
+
     
 //    NSURL *imgPath = [[NSBundle mainBundle] URLForResource:@"SCENE1" withExtension:@"gif"];
 //    NSString *path = [imgPath path];
@@ -117,22 +135,25 @@
     imageView.frame = self.view.frame;
     [self.view addSubview:imageView];
 
-//    [self record];
+    [self record];
+    [self performSelector:@selector(stopRecord) withObject:nil afterDelay:5.16];
 }
 
 - (void)record {
     NSURL *outputURL = [[[self applicationDocumentsDirectory] URLByAppendingPathComponent:@"test1"] URLByAppendingPathExtension:@"mov"];
     [self.camera startRecordingWithOutputUrl:outputURL didRecord:^(LLSimpleCamera *camera, NSURL *outputFileUrl, NSError *error) {
-//
-//        AVPlayer *player = [AVPlayer playerWithURL:outputFileUrl];
-//        AVPlayerViewController *playerViewController = [AVPlayerViewController new];
-//        playerViewController.player = player;
-//        [self.picker presentViewController:playerViewController animated:YES completion:nil];
+
         
-        //        VideoViewController *vc = [[VideoViewController alloc] initWithVideoUrl:outputFileUrl];
-        //        [self.navigationController pushViewController:vc animated:YES];
+        HRConfirmVideoViewController *confirmController = [[HRConfirmVideoViewController alloc] initWithVideoURL:outputFileUrl];
+        [self.navigationController pushViewController:confirmController animated:YES];
+
+        
     }];
     
+}
+
+- (void)stopRecord {
+    [self.camera stopRecording];
 }
 
 - (NSURL *)applicationDocumentsDirectory {

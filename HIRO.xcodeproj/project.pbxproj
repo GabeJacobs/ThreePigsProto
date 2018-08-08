@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		2315855E21023E51006AE508 /* HRBookPageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2315855D21023E51006AE508 /* HRBookPageViewController.m */; };
+		2319C26C211B907C00FCA3FE /* HRConfirmVideoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2319C26B211B907C00FCA3FE /* HRConfirmVideoViewController.m */; };
 		23CC1A6E20D4511B00AB6E51 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 23CC1A6D20D4511B00AB6E51 /* AppDelegate.m */; };
 		23CC1A7120D4511B00AB6E51 /* HRMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 23CC1A7020D4511B00AB6E51 /* HRMenuViewController.m */; };
 		23CC1A7420D4511B00AB6E51 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 23CC1A7220D4511B00AB6E51 /* Main.storyboard */; };
@@ -24,6 +25,8 @@
 /* Begin PBXFileReference section */
 		2315855C21023E51006AE508 /* HRBookPageViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HRBookPageViewController.h; sourceTree = "<group>"; };
 		2315855D21023E51006AE508 /* HRBookPageViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HRBookPageViewController.m; sourceTree = "<group>"; };
+		2319C26A211B907C00FCA3FE /* HRConfirmVideoViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HRConfirmVideoViewController.h; sourceTree = "<group>"; };
+		2319C26B211B907C00FCA3FE /* HRConfirmVideoViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HRConfirmVideoViewController.m; sourceTree = "<group>"; };
 		23CC1A6920D4511B00AB6E51 /* HIRO.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HIRO.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		23CC1A6C20D4511B00AB6E51 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		23CC1A6D20D4511B00AB6E51 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -78,8 +81,6 @@
 		23CC1A6B20D4511B00AB6E51 /* HIRO */ = {
 			isa = PBXGroup;
 			children = (
-				23DAB5792118C1590037E5E2 /* Loop.mp3 */,
-				A98DD5A72114E15500CE33CD /* SCENE1.gif */,
 				23CC1A6C20D4511B00AB6E51 /* AppDelegate.h */,
 				23CC1A6D20D4511B00AB6E51 /* AppDelegate.m */,
 				23CC1A6F20D4511B00AB6E51 /* HRMenuViewController.h */,
@@ -88,12 +89,16 @@
 				2315855D21023E51006AE508 /* HRBookPageViewController.m */,
 				23CC1A8220D4714F00AB6E51 /* HRCameraSceneViewController.h */,
 				23CC1A8320D4714F00AB6E51 /* HRCameraSceneViewController.m */,
+				2319C26A211B907C00FCA3FE /* HRConfirmVideoViewController.h */,
+				2319C26B211B907C00FCA3FE /* HRConfirmVideoViewController.m */,
 				23CC1A8520D472AB00AB6E51 /* HRBaseNavigationController.h */,
 				23CC1A8620D472AB00AB6E51 /* HRBaseNavigationController.m */,
 				23CC1A7220D4511B00AB6E51 /* Main.storyboard */,
 				23CC1A7520D4511C00AB6E51 /* Assets.xcassets */,
 				23CC1A7720D4511C00AB6E51 /* LaunchScreen.storyboard */,
 				23CC1A7A20D4511C00AB6E51 /* Info.plist */,
+				A98DD5A72114E15500CE33CD /* SCENE1.gif */,
+				23DAB5792118C1590037E5E2 /* Loop.mp3 */,
 				23CC1A7B20D4511C00AB6E51 /* main.m */,
 			);
 			path = HIRO;
@@ -245,6 +250,7 @@
 				23CC1A7C20D4511C00AB6E51 /* main.m in Sources */,
 				23CC1A8720D472AB00AB6E51 /* HRBaseNavigationController.m in Sources */,
 				23CC1A6E20D4511B00AB6E51 /* AppDelegate.m in Sources */,
+				2319C26C211B907C00FCA3FE /* HRConfirmVideoViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

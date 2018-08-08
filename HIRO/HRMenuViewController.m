@@ -32,7 +32,7 @@
     self.startButton.layer.shadowOpacity = 0.25;
     self.startButton.layer.shadowColor = [UIColor blackColor].CGColor;
     self.startButton.layer.masksToBounds = NO;
-    self.startButton.frame = CGRectMake(self.view.frame.size.width/2 + 75, self.view.frame.size.height/2, 220, 90);
+    self.startButton.frame = CGRectMake(self.view.frame.size.width/2 + 75, self.view.frame.size.height/2 + 100, 220, 90);
     [self.startButton addTarget:self action:@selector(tappedStart) forControlEvents:UIControlEventTouchUpInside];
     [self.startButton setTitle:@"Begin" forState:UIControlStateNormal];
     self.startButton.titleLabel.font = [UIFont systemFontOfSize:20];
@@ -47,7 +47,7 @@
     self.viewVideosButton.layer.shadowOpacity = 0.25;
     self.viewVideosButton.layer.shadowColor = [UIColor blackColor].CGColor;
     self.viewVideosButton.layer.masksToBounds = NO;
-    self.viewVideosButton.frame = CGRectMake(self.view.frame.size.width/2 - 220 - 75, self.view.frame.size.height/2, 220, 90);
+    self.viewVideosButton.frame = CGRectMake(self.view.frame.size.width/2 - 220 - 75, self.view.frame.size.height/2 + 100, 220, 90);
     [self.viewVideosButton addTarget:self action:@selector(tappedView) forControlEvents:UIControlEventTouchUpInside];
     [self.viewVideosButton setTitle:@"Saved Videos" forState:UIControlStateNormal];
     self.viewVideosButton.titleLabel.font = [UIFont systemFontOfSize:20];
@@ -61,7 +61,17 @@
     NSURL *soundFileURL = [NSURL fileURLWithPath:soundFilePath];
     self.player = [[AVAudioPlayer alloc] initWithContentsOfURL:soundFileURL error:nil];
     self.player.numberOfLoops = -1; //infinite
-//    [self.player play];
+    [self.player play];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(startMusicRecieved:)
+                                                 name:@"StopMusic"
+                                               object:nil];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(stopMusicRecieved:)
+                                                 name:@"StartMusic"
+                                               object:nil];
 }
 
 
@@ -73,23 +83,33 @@
 - (void)tappedStart {
         HRBookPageViewController *pageOne = [[HRBookPageViewController alloc] initWithPage:1];
         [self.navigationController pushViewController:pageOne animated:YES];
-    
+
 //    HRCameraSceneViewController *cameraPage = [[HRCameraSceneViewController alloc] init];
 //    [self.navigationController pushViewController:cameraPage animated:YES];
     
     
 }
 
-- (void)tappedView {
-    
+- (void)startMusicRecieved:(NSNotification *)notification {
+    [self.player stop];
 }
+
+- (void)stopMusicRecieved:(NSNotification *)notification {
+    [self.player play];
+}
+
 -(BOOL)prefersStatusBarHidden{
     return YES;
 }
 
 
+- (void) dealloc
+{
+    // If you don't remove yourself as an observer, the Notification Center
+    // will continue to try and send notification objects to the deallocated
+    // object.
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
 
-//-(BOOL)shouldAutorotate {
-//    return NO;
-//}
+
 @end
