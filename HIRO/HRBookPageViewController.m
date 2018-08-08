@@ -27,12 +27,19 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.view.backgroundColor = [UIColor whiteColor];
     
-    self.backgroundView = [[UIView alloc]  initWithFrame:self.view.frame];
-    [self.view addSubview:self.backgroundView];
     self.backgroundImage = [[UIImageView alloc] initWithImage:[UIImage imageNamed:[NSString stringWithFormat:@"P%d-Back", self.pageNumber]]];
+    self.backgroundImage.frame = self.view.frame;
+    [self.view addSubview:self.backgroundImage];
     
-    [self.backgroundView addSubview:self.backgroundImage];
+    
+    self.pageText = [[UIImageView alloc] initWithImage:[UIImage imageNamed:[NSString stringWithFormat:@"P%d-Text", self.pageNumber]]];
+    self.pageText.alpha = 0.0;
+    self.pageText.frame = self.view.frame;
+    [self.backgroundImage addSubview:self.pageText];
+
+    
     
     [self performSelector:@selector(showText) withObject:nil afterDelay:0.8f];
     self.nextPageButton = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -52,9 +59,11 @@
 }
 
 - (void)showText {
-    self.pageText = [[UIImageView alloc] initWithImage:[UIImage imageNamed:[NSString stringWithFormat:@"P%d-Text", self.pageNumber]]];
+    
+   
+    
+    self.pageText.image = [UIImage imageNamed:[NSString stringWithFormat:@"P%d-Text", self.pageNumber]];
     self.pageText.alpha = 0.0;
-    [self.backgroundImage addSubview:self.pageText];
     [UIView animateWithDuration:1.25 animations:^{
         self.pageText.alpha = 1.0;
     } completion:^(BOOL finished) {
