@@ -81,11 +81,11 @@
 }
 
 - (void)tappedStart {
-        HRBookPageViewController *pageOne = [[HRBookPageViewController alloc] initWithPage:1];
-        [self.navigationController pushViewController:pageOne animated:YES];
+//        HRBookPageViewController *pageOne = [[HRBookPageViewController alloc] initWithPage:1];
+//        [self.navigationController pushViewController:pageOne animated:YES];
 
-//    HRCameraSceneViewController *cameraPage = [[HRCameraSceneViewController alloc] init];
-//    [self.navigationController pushViewController:cameraPage animated:YES];
+    HRCameraSceneViewController *cameraPage = [[HRCameraSceneViewController alloc] init];
+    [self.navigationController pushViewController:cameraPage animated:YES];
     
     
 }

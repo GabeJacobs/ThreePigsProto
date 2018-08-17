@@ -76,30 +76,20 @@
     
     
     self.recordButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    self.recordButton.backgroundColor = [UIColor colorWithRed:0.24 green:0.47 blue:0.85 alpha:1.0];
-    self.recordButton.imageView.layer.cornerRadius = 7.0f;
-    self.recordButton.layer.shadowOffset = CGSizeMake(0, 7);
-    self.recordButton.layer.shadowRadius = 5;
-    self.recordButton.layer.shadowOpacity = 0.25;
-    self.recordButton.layer.shadowColor = [UIColor blackColor].CGColor;
-    self.recordButton.layer.masksToBounds = NO;
-    self.recordButton.frame = CGRectMake(self.view.frame.size.width/2 - 50, self.view.frame.size.height - 100, 100, 50);
+    [self.recordButton setImage:[UIImage imageNamed:@"RecordButton"] forState:UIControlStateNormal];
+//    self.recordButton.backgroundColor = [UIColor colorWithRed:0.24 green:0.47 blue:0.85 alpha:1.0];
+//    self.recordButton.imageView.layer.cornerRadius = 7.0f;
+//    self.recordButton.layer.shadowOffset = CGSizeMake(0, 7);
+//    self.recordButton.layer.shadowRadius = 5;
+//    self.recordButton.layer.shadowOpacity = 0.25;
+//    self.recordButton.layer.shadowColor = [UIColor blackColor].CGColor;
+//    self.recordButton.layer.masksToBounds = NO;
+    //    [self.recordButton setTitle:@"Record" forState:UIControlStateNormal];
+    //    self.recordButton.titleLabel.font = [UIFont systemFontOfSize:20];
+    //    [self.recordButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    self.recordButton.frame = CGRectMake(self.view.frame.size.width/2 - [UIImage imageNamed:@"RecordButton"].size.width/2, self.view.frame.size.height - 140, [UIImage imageNamed:@"RecordButton"].size.width, [UIImage imageNamed:@"RecordButton"].size.height);
     [self.recordButton addTarget:self action:@selector(tappedRecord) forControlEvents:UIControlEventTouchUpInside];
-    [self.recordButton setTitle:@"Record" forState:UIControlStateNormal];
-    self.recordButton.titleLabel.font = [UIFont systemFontOfSize:20];
-    [self.recordButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     [self.view addSubview:self.recordButton];
-
-    
-//    NSURL *imgPath = [[NSBundle mainBundle] URLForResource:@"SCENE1" withExtension:@"gif"];
-//    NSString *path = [imgPath path];
-//    NSData *data = [[NSFileManager defaultManager] contentsAtPath:path];
-//
-//    FLAnimatedImage *image = [FLAnimatedImage animatedImageWithGIFData:data];
-//    FLAnimatedImageView *imageView = [[FLAnimatedImageView alloc] init];
-//    imageView.animatedImage = image;
-//    imageView.frame = self.view.frame;
-//    [self.view addSubview:imageView];
 }
 
 
@@ -123,6 +113,10 @@
 }
 
 -(void)tappedRecord {
+    self.recordButton.userInteractionEnabled = NO;
+    self.recordButton.frame = CGRectMake(25,25, [UIImage imageNamed:@"RecordButton"].size.width, [UIImage imageNamed:@"RecordButton"].size.height);
+    self.recordButton.hidden = YES;
+
     self.firstFrameView.hidden = YES;
     
     NSURL *imgPath = [[NSBundle mainBundle] URLForResource:@"SCENE1" withExtension:@"gif"];
@@ -134,6 +128,8 @@
     imageView.animatedImage = image;
     imageView.frame = self.view.frame;
     [self.view addSubview:imageView];
+    
+    [self.view bringSubviewToFront:self.recordButton];
 
     [self record];
     [self performSelector:@selector(stopRecord) withObject:nil afterDelay:5.16];
@@ -141,6 +137,11 @@
 
 - (void)record {
     NSURL *outputURL = [[[self applicationDocumentsDirectory] URLByAppendingPathComponent:@"test1"] URLByAppendingPathExtension:@"mov"];
+    
+    self.blinkTimer = [NSTimer scheduledTimerWithTimeInterval:.6 repeats:YES block:^(NSTimer * _Nonnull timer) {
+            self.recordButton.hidden = !self.recordButton.hidden;
+    }];
+
     [self.camera startRecordingWithOutputUrl:outputURL didRecord:^(LLSimpleCamera *camera, NSURL *outputFileUrl, NSError *error) {
 
         
@@ -152,7 +153,9 @@
     
 }
 
+
 - (void)stopRecord {
+    [self.blinkTimer invalidate];
     [self.camera stopRecording];
 }
 
