@@ -54,11 +54,11 @@
                                                  position:LLCameraPositionRear
                                              videoEnabled:YES];
 //    [self.camera attachToViewController:self withFrame:CGRectMake(screenRect.size.width - (screenRect.size.width*.75), screenRect.size.height - (screenRect.size.height*.75), screenRect.size.width*.75, screenRect.size.height*.75)];
-        [self.camera attachToViewController:self withFrame:CGRectMake(0, 0, screenRect.size.width, screenRect.size.height)];
+    [self.camera attachToViewController:self withFrame:CGRectMake(0, 0, screenRect.size.width, screenRect.size.height)];
 
     [self.camera start];
 
-    self.firstFrameView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"SC1-Back"]];
+    self.firstFrameView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:[NSString stringWithFormat:@"SC%d-Back", self.sceneNumber]]];
     self.firstFrameView.frame = self.view.frame;
     [self.view addSubview:self.firstFrameView];
     
@@ -82,7 +82,10 @@
     [self.countdownLabel setTextColor:[UIColor whiteColor]];
     [self.countdownView addSubview:self.countdownLabel];
     
-    NSURL *imgPath = [[NSBundle mainBundle] URLForResource:@"SCENE1" withExtension:@"gif"];
+    NSLog(@"%d",self.sceneNumber);
+    NSLog(@"%@",[NSString stringWithFormat:@"SCENE%d", self.sceneNumber]);
+
+    NSURL *imgPath = [[NSBundle mainBundle] URLForResource:[NSString stringWithFormat:@"SCENE%d", self.sceneNumber] withExtension:@"gif"];
     NSString *path = [imgPath path];
     NSData *data = [[NSFileManager defaultManager] contentsAtPath:path];
     FLAnimatedImage *image = [FLAnimatedImage animatedImageWithGIFData:data];
@@ -123,7 +126,11 @@
     [self.view bringSubviewToFront:self.countdownView];
 
     [self record];
-    [self performSelector:@selector(stopRecord) withObject:nil afterDelay:5.16];
+    if(self.sceneNumber == 4) {
+        [self performSelector:@selector(stopRecord) withObject:nil afterDelay:3.2];
+    } else{
+        [self performSelector:@selector(stopRecord) withObject:nil afterDelay:5.16];
+    }
 }
 
 - (void)record {
@@ -131,13 +138,15 @@
     
     self.countdownView.hidden = NO;
     self.secondsLeftToRecord = 5;
+    if(self.sceneNumber == 4){
+        self.secondsLeftToRecord = 3;
+    }
     [self setCountdown];
 
 
     [self.camera startRecordingWithOutputUrl:outputURL didRecord:^(LLSimpleCamera *camera, NSURL *outputFileUrl, NSError *error) {
 
-        
-        HRConfirmVideoViewController *confirmController = [[HRConfirmVideoViewController alloc] initWithVideoURL:outputFileUrl];
+        HRConfirmVideoViewController *confirmController = [[HRConfirmVideoViewController alloc] initWithVideoURL:outputFileUrl andSceneNumber:self.sceneNumber];
         [self.navigationController pushViewController:confirmController animated:YES];
         [self reset];
         
@@ -156,6 +165,7 @@
 
 
 - (void)stopRecord {
+    [self.aniamtedImageView stopAnimating];
     [self.camera stopRecording];
 }
 

@@ -55,6 +55,11 @@
     [self.view addSubview:self.prevPageButton];
 
     [self disableButtons];
+    if(self.pageNumber !=1){
+        [[NSNotificationCenter defaultCenter]
+         postNotificationName:@"StartMusic"
+         object:self];
+    }
     
 }
 
@@ -74,22 +79,6 @@
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
-}
-
-- (void)tappedNextPage {
-    
-    [self disableButtons];
-    self.pageNumber++;
-    if(self.pageNumber == 3){
-        [self fadeContentNoImageChange];
-    } else if(self.pageNumber == 4){
-        [self showRecordingScene:1];
-    } else{
-        [self fadeContent];
-
-    }
-
-
 }
 
 - (void)fadeContentNoImageChange {
@@ -119,6 +108,28 @@
     }];
 }
 
+- (void)tappedNextPage {
+    
+    [self disableButtons];
+    self.pageNumber++;
+    if(self.pageNumber == 3 || self.pageNumber == 6 || self.pageNumber == 9){
+        [self fadeContentNoImageChange];
+    } else if(self.pageNumber == 4){
+        [self showRecordingScene:1];
+    } else if(self.pageNumber == 7){
+        [self showRecordingScene:2];
+    } else if(self.pageNumber == 10){
+        [self showRecordingScene:3];
+    }  else if(self.pageNumber == 13){
+        [self showRecordingScene:4];
+    }else{
+        [self fadeContent];
+        
+    }
+    NSLog(@"%i", self.pageNumber);
+
+    
+}
 - (void)tappedPrevPage {
     
     if(self.pageNumber != 1 && self.pageNumber != 3){
@@ -127,9 +138,11 @@
     } else if(self.pageNumber == 3){
         self.pageNumber--;
         [self fadeContentNoImageChange];
-    } else{
+    }  else{
         [self.navigationController popViewControllerAnimated:YES];
     }
+
+    NSLog(@"%i", self.pageNumber);
 
 }
 
@@ -144,7 +157,7 @@
 }
 
 -(void)showRecordingScene:(int)sceneNumber {
-    HRCameraSceneViewController *camera = [[HRCameraSceneViewController alloc] initWithSceneNumber:1];
+    HRCameraSceneViewController *camera = [[HRCameraSceneViewController alloc] initWithSceneNumber:sceneNumber];
     [self.navigationController pushViewController:camera animated:YES];
 }
 

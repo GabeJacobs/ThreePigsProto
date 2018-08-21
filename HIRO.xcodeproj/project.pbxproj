@@ -9,6 +9,11 @@
 /* Begin PBXBuildFile section */
 		2315855E21023E51006AE508 /* HRBookPageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2315855D21023E51006AE508 /* HRBookPageViewController.m */; };
 		2319C26C211B907C00FCA3FE /* HRConfirmVideoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2319C26B211B907C00FCA3FE /* HRConfirmVideoViewController.m */; };
+		2368F18F212C8C7A002DC500 /* SCENE2.gif in Resources */ = {isa = PBXBuildFile; fileRef = 2368F18E212C8C7A002DC500 /* SCENE2.gif */; };
+		2368F193212CA8D8002DC500 /* SCENE3.gif in Resources */ = {isa = PBXBuildFile; fileRef = 2368F192212CA8D7002DC500 /* SCENE3.gif */; };
+		2368F195212CB034002DC500 /* SCENE4.gif in Resources */ = {isa = PBXBuildFile; fileRef = 2368F194212CB034002DC500 /* SCENE4.gif */; };
+		2368F19B212CB2B8002DC500 /* HRReadyToWatchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2368F199212CB2B8002DC500 /* HRReadyToWatchViewController.m */; };
+		2368F19E212CB616002DC500 /* HRWatchMovieViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2368F19D212CB616002DC500 /* HRWatchMovieViewController.m */; };
 		23CC1A6E20D4511B00AB6E51 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 23CC1A6D20D4511B00AB6E51 /* AppDelegate.m */; };
 		23CC1A7120D4511B00AB6E51 /* HRMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 23CC1A7020D4511B00AB6E51 /* HRMenuViewController.m */; };
 		23CC1A7420D4511B00AB6E51 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 23CC1A7220D4511B00AB6E51 /* Main.storyboard */; };
@@ -27,6 +32,13 @@
 		2315855D21023E51006AE508 /* HRBookPageViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HRBookPageViewController.m; sourceTree = "<group>"; };
 		2319C26A211B907C00FCA3FE /* HRConfirmVideoViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HRConfirmVideoViewController.h; sourceTree = "<group>"; };
 		2319C26B211B907C00FCA3FE /* HRConfirmVideoViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HRConfirmVideoViewController.m; sourceTree = "<group>"; };
+		2368F18E212C8C7A002DC500 /* SCENE2.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = SCENE2.gif; sourceTree = "<group>"; };
+		2368F192212CA8D7002DC500 /* SCENE3.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = SCENE3.gif; sourceTree = "<group>"; };
+		2368F194212CB034002DC500 /* SCENE4.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = SCENE4.gif; sourceTree = "<group>"; };
+		2368F196212CB270002DC500 /* HRReadyToWatchViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HRReadyToWatchViewController.h; sourceTree = "<group>"; };
+		2368F199212CB2B8002DC500 /* HRReadyToWatchViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HRReadyToWatchViewController.m; sourceTree = "<group>"; };
+		2368F19C212CB616002DC500 /* HRWatchMovieViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HRWatchMovieViewController.h; sourceTree = "<group>"; };
+		2368F19D212CB616002DC500 /* HRWatchMovieViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HRWatchMovieViewController.m; sourceTree = "<group>"; };
 		23CC1A6920D4511B00AB6E51 /* HIRO.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HIRO.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		23CC1A6C20D4511B00AB6E51 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		23CC1A6D20D4511B00AB6E51 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -91,6 +103,10 @@
 				23CC1A8320D4714F00AB6E51 /* HRCameraSceneViewController.m */,
 				2319C26A211B907C00FCA3FE /* HRConfirmVideoViewController.h */,
 				2319C26B211B907C00FCA3FE /* HRConfirmVideoViewController.m */,
+				2368F196212CB270002DC500 /* HRReadyToWatchViewController.h */,
+				2368F199212CB2B8002DC500 /* HRReadyToWatchViewController.m */,
+				2368F19C212CB616002DC500 /* HRWatchMovieViewController.h */,
+				2368F19D212CB616002DC500 /* HRWatchMovieViewController.m */,
 				23CC1A8520D472AB00AB6E51 /* HRBaseNavigationController.h */,
 				23CC1A8620D472AB00AB6E51 /* HRBaseNavigationController.m */,
 				23CC1A7220D4511B00AB6E51 /* Main.storyboard */,
@@ -98,6 +114,9 @@
 				23CC1A7720D4511C00AB6E51 /* LaunchScreen.storyboard */,
 				23CC1A7A20D4511C00AB6E51 /* Info.plist */,
 				A98DD5A72114E15500CE33CD /* SCENE1.gif */,
+				2368F18E212C8C7A002DC500 /* SCENE2.gif */,
+				2368F192212CA8D7002DC500 /* SCENE3.gif */,
+				2368F194212CB034002DC500 /* SCENE4.gif */,
 				23DAB5792118C1590037E5E2 /* Loop.mp3 */,
 				23CC1A7B20D4511C00AB6E51 /* main.m */,
 			);
@@ -180,7 +199,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2368F195212CB034002DC500 /* SCENE4.gif in Resources */,
+				2368F18F212C8C7A002DC500 /* SCENE2.gif in Resources */,
 				A98DD5A82114E15600CE33CD /* SCENE1.gif in Resources */,
+				2368F193212CA8D8002DC500 /* SCENE3.gif in Resources */,
 				23CC1A7920D4511C00AB6E51 /* LaunchScreen.storyboard in Resources */,
 				23DAB57A2118C1590037E5E2 /* Loop.mp3 in Resources */,
 				23CC1A7620D4511C00AB6E51 /* Assets.xcassets in Resources */,
@@ -221,6 +243,7 @@
 				"${PODS_ROOT}/GPUImage/framework/Resources/lookup_miss_etikate.png",
 				"${PODS_ROOT}/GPUImage/framework/Resources/lookup_soft_elegance_1.png",
 				"${PODS_ROOT}/GPUImage/framework/Resources/lookup_soft_elegance_2.png",
+				"${PODS_ROOT}/SIAlertView/SIAlertView/SIAlertView.bundle",
 				"${PODS_ROOT}/SVProgressHUD/SVProgressHUD/SVProgressHUD.bundle",
 			);
 			name = "[CP] Copy Pods Resources";
@@ -230,6 +253,7 @@
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/lookup_miss_etikate.png",
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/lookup_soft_elegance_1.png",
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/lookup_soft_elegance_2.png",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/SIAlertView.bundle",
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/SVProgressHUD.bundle",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -248,9 +272,11 @@
 				23CC1A8420D4714F00AB6E51 /* HRCameraSceneViewController.m in Sources */,
 				23CC1A7120D4511B00AB6E51 /* HRMenuViewController.m in Sources */,
 				23CC1A7C20D4511C00AB6E51 /* main.m in Sources */,
+				2368F19B212CB2B8002DC500 /* HRReadyToWatchViewController.m in Sources */,
 				23CC1A8720D472AB00AB6E51 /* HRBaseNavigationController.m in Sources */,
 				23CC1A6E20D4511B00AB6E51 /* AppDelegate.m in Sources */,
 				2319C26C211B907C00FCA3FE /* HRConfirmVideoViewController.m in Sources */,
+				2368F19E212CB616002DC500 /* HRWatchMovieViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

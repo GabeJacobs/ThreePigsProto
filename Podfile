@@ -11,9 +11,9 @@ target 'HIRO' do
   pod "GPUImage"
   pod "SVProgressHUD"
   pod "LLSimpleCamera"
-pod 'FLAnimatedImage', '~> 1.0'
-
-pod 'LLVideoEditor', '~> 1.0'
+  pod 'FLAnimatedImage', '~> 1.0'
+  pod 'SIAlertView'
+  pod 'LLVideoEditor', '~> 1.0'
 
 
 end

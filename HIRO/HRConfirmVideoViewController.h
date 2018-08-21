@@ -12,7 +12,7 @@
 
 @interface HRConfirmVideoViewController : UIViewController
 
-- (instancetype)initWithVideoURL:(NSURL *)video;
+- (instancetype)initWithVideoURL:(NSURL *)video andSceneNumber:(int)sceneNumber;
 
 @property (nonatomic) NSURL *videoURL;
 
@@ -22,6 +22,7 @@
 @property (nonatomic) AVPlayer *avPlayer;
 @property (nonatomic) FLAnimatedImageView *animatedView;
 @property (nonatomic) AVPlayerLayer *videoLayer;
+@property (nonatomic) int sceneNumber;
 
 
 @end

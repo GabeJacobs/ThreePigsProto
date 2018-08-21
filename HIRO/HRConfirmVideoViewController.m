@@ -7,6 +7,8 @@
 //
 
 #import "HRConfirmVideoViewController.h"
+#import "HRBookPageViewController.h"
+#import "HRReadyToWatchViewController.h"
 
 @interface HRConfirmVideoViewController ()
 
@@ -15,10 +17,11 @@
 @implementation HRConfirmVideoViewController
 
 
-- (instancetype)initWithVideoURL:(NSURL *)video {
+- (instancetype)initWithVideoURL:(NSURL *)video andSceneNumber:(int)sceneNumber {
     self = [super init];
     if (self) {
         self.videoURL = video;
+        self.sceneNumber = sceneNumber;
     }
     return self;
 }
@@ -30,14 +33,14 @@
     
     self.tryAgainButton = [UIButton buttonWithType:UIButtonTypeCustom];
 //    self.tryAgainButton.backgroundColor = [UIColor colorWithRed:0.24 green:0.47 blue:0.85 alpha:1.0];
-    [self.tryAgainButton setImage:[UIImage imageNamed:@"Cancel"] forState:UIControlStateNormal];
-    self.tryAgainButton.frame = CGRectMake((self.view.frame.size.width/2 - [UIImage imageNamed:@"Cancel"].size.width/2) - 150, self.view.frame.size.height - 130,  [UIImage imageNamed:@"Cancel"].size.width,[UIImage imageNamed:@"Cancel"].size.height);
+    [self.tryAgainButton setImage:[UIImage imageNamed:@"Cancel2"] forState:UIControlStateNormal];
+    self.tryAgainButton.frame = CGRectMake((self.view.frame.size.width/2 - [UIImage imageNamed:@"Cancel2"].size.width/2) - 150, self.view.frame.size.height - 140,  [UIImage imageNamed:@"Cancel2"].size.width,[UIImage imageNamed:@"Cancel2"].size.height);
     [self.tryAgainButton addTarget:self action:@selector(tappedTryAgain) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:self.tryAgainButton];
     
     self.confirmButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    [self.confirmButton setImage:[UIImage imageNamed:@"Confirm"] forState:UIControlStateNormal];
-    self.confirmButton.frame = CGRectMake((self.view.frame.size.width/2 - [UIImage imageNamed:@"Confirm"].size.width/2) + 150, self.view.frame.size.height - 130, [UIImage imageNamed:@"Confirm"].size.width,[UIImage imageNamed:@"Confirm"].size.height);
+    [self.confirmButton setImage:[UIImage imageNamed:@"Confirm2"] forState:UIControlStateNormal];
+    self.confirmButton.frame = CGRectMake((self.view.frame.size.width/2 - [UIImage imageNamed:@"Confirm2"].size.width/2) + 150, self.view.frame.size.height - 140, [UIImage imageNamed:@"Confirm2"].size.width,[UIImage imageNamed:@"Confirm2"].size.height);
     [self.confirmButton addTarget:self action:@selector(tappedConfirm) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:self.confirmButton];
     
@@ -53,8 +56,8 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(itemDidFinishPlaying:) name:AVPlayerItemDidPlayToEndTimeNotification object:[self.avPlayer currentItem]];
 
     [self.avPlayer play];
-    
-    NSURL *imgPath = [[NSBundle mainBundle] URLForResource:@"SCENE1" withExtension:@"gif"];
+
+    NSURL *imgPath = [[NSBundle mainBundle] URLForResource:[NSString stringWithFormat:@"SCENE%d", self.sceneNumber] withExtension:@"gif"];
     NSString *path = [imgPath path];
     NSData *data = [[NSFileManager defaultManager] contentsAtPath:path];
     
@@ -66,6 +69,7 @@
     [self.view addSubview:self.animatedView];
     
     // Do any additional setup after loading the view.
+    
 }
 
 - (void)didReceiveMemoryWarning {
@@ -76,7 +80,7 @@
 - (void)itemDidFinishPlaying:(NSNotification *)notification {
     [self.animatedView removeFromSuperview];
     
-    NSURL *imgPath = [[NSBundle mainBundle] URLForResource:@"SCENE1" withExtension:@"gif"];
+    NSURL *imgPath = [[NSBundle mainBundle] URLForResource:[NSString stringWithFormat:@"SCENE%d", self.sceneNumber] withExtension:@"gif"];
     NSString *path = [imgPath path];
     NSData *data = [[NSFileManager defaultManager] contentsAtPath:path];
     FLAnimatedImage *image = [FLAnimatedImage animatedImageWithGIFData:data];
@@ -94,6 +98,31 @@
 
 - (void)tappedTryAgain {
     [self.navigationController popViewControllerAnimated:YES];
+}
+
+- (void)tappedConfirm{
+    [self.avPlayer pause];
+    
+    if(self.sceneNumber == 1){
+        HRBookPageViewController *pageOne = [[HRBookPageViewController alloc] initWithPage:4];
+        [self.navigationController pushViewController:pageOne animated:YES];
+
+    } else if(self.sceneNumber == 2){
+        HRBookPageViewController *pageOne = [[HRBookPageViewController alloc] initWithPage:7];
+        [self.navigationController pushViewController:pageOne animated:YES];
+    }
+    else if(self.sceneNumber == 3){
+        HRBookPageViewController *pageOne = [[HRBookPageViewController alloc] initWithPage:10];
+        [self.navigationController pushViewController:pageOne animated:YES];
+    }
+    else if(self.sceneNumber == 4){
+        
+        HRReadyToWatchViewController *rVC = [[HRReadyToWatchViewController alloc] init];
+        [self.navigationController pushViewController:rVC animated:YES];
+
+//        HRBookPageViewController *pageOne = [[HRBookPageViewController alloc] initWithPage:10];
+//        [self.navigationController pushViewController:pageOne animated:YES];
+    }
 }
 
 /*
