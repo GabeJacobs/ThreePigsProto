@@ -28,7 +28,12 @@
 @property (nonatomic, strong) NSTimer * timer;
 @property (strong, nonatomic) NSURL *videoURL;
 @property (strong, nonatomic) UIButton *recordButton;
-@property (strong, nonatomic) NSTimer *blinkTimer;
+@property (nonatomic) int secondsLeftToRecord;
+@property (strong, nonatomic) FLAnimatedImageView *aniamtedImageView;
+
+@property (strong, nonatomic) NSTimer *countdownTimer;
+@property (strong, nonatomic) UIView *countdownView;
+@property (strong, nonatomic) UILabel *countdownLabel;
 
 @property (strong, nonatomic) UIImageView *firstFrameView;
 

@@ -34,8 +34,8 @@
     self.startButton.layer.masksToBounds = NO;
     self.startButton.frame = CGRectMake(self.view.frame.size.width/2 + 75, self.view.frame.size.height/2 + 100, 220, 90);
     [self.startButton addTarget:self action:@selector(tappedStart) forControlEvents:UIControlEventTouchUpInside];
-    [self.startButton setTitle:@"Begin" forState:UIControlStateNormal];
-    self.startButton.titleLabel.font = [UIFont systemFontOfSize:20];
+    [self.startButton setTitle:@"Read" forState:UIControlStateNormal];
+    self.startButton.titleLabel.font = [UIFont fontWithName:@"AvenirNext-Bold" size:23];
     [self.startButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     [self.view addSubview:self.startButton];
     
@@ -50,7 +50,7 @@
     self.viewVideosButton.frame = CGRectMake(self.view.frame.size.width/2 - 220 - 75, self.view.frame.size.height/2 + 100, 220, 90);
     [self.viewVideosButton addTarget:self action:@selector(tappedView) forControlEvents:UIControlEventTouchUpInside];
     [self.viewVideosButton setTitle:@"Saved Videos" forState:UIControlStateNormal];
-    self.viewVideosButton.titleLabel.font = [UIFont systemFontOfSize:20];
+    self.viewVideosButton.titleLabel.font = [UIFont fontWithName:@"AvenirNext-Bold" size:23];
     [self.viewVideosButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     [self.view addSubview:self.viewVideosButton];
     
@@ -81,12 +81,12 @@
 }
 
 - (void)tappedStart {
-//        HRBookPageViewController *pageOne = [[HRBookPageViewController alloc] initWithPage:1];
-//        [self.navigationController pushViewController:pageOne animated:YES];
+        HRBookPageViewController *pageOne = [[HRBookPageViewController alloc] initWithPage:1];
+        [self.navigationController pushViewController:pageOne animated:YES];
 
-    HRCameraSceneViewController *cameraPage = [[HRCameraSceneViewController alloc] init];
-    [self.navigationController pushViewController:cameraPage animated:YES];
-    
+//    HRCameraSceneViewController *cameraPage = [[HRCameraSceneViewController alloc] init];
+//    [self.navigationController pushViewController:cameraPage animated:YES];
+//
     
 }
 

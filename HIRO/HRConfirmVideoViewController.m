@@ -29,33 +29,16 @@
     self.view.backgroundColor = [UIColor whiteColor];
     
     self.tryAgainButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    self.tryAgainButton.backgroundColor = [UIColor colorWithRed:0.24 green:0.47 blue:0.85 alpha:1.0];
-    self.tryAgainButton.imageView.layer.cornerRadius = 7.0f;
-    self.tryAgainButton.layer.shadowOffset = CGSizeMake(0, 7);
-    self.tryAgainButton.layer.shadowRadius = 5;
-    self.tryAgainButton.layer.shadowOpacity = 0.25;
-    self.tryAgainButton.layer.shadowColor = [UIColor blackColor].CGColor;
-    self.tryAgainButton.layer.masksToBounds = NO;
-    self.tryAgainButton.frame = CGRectMake((self.view.frame.size.width/2 - 110) - 175, self.view.frame.size.height - 130, 220, 90);
+//    self.tryAgainButton.backgroundColor = [UIColor colorWithRed:0.24 green:0.47 blue:0.85 alpha:1.0];
+    [self.tryAgainButton setImage:[UIImage imageNamed:@"Cancel"] forState:UIControlStateNormal];
+    self.tryAgainButton.frame = CGRectMake((self.view.frame.size.width/2 - [UIImage imageNamed:@"Cancel"].size.width/2) - 150, self.view.frame.size.height - 130,  [UIImage imageNamed:@"Cancel"].size.width,[UIImage imageNamed:@"Cancel"].size.height);
     [self.tryAgainButton addTarget:self action:@selector(tappedTryAgain) forControlEvents:UIControlEventTouchUpInside];
-    [self.tryAgainButton setTitle:@"Try Again" forState:UIControlStateNormal];
-    self.tryAgainButton.titleLabel.font = [UIFont systemFontOfSize:20];
-    [self.tryAgainButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     [self.view addSubview:self.tryAgainButton];
     
     self.confirmButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    self.confirmButton.backgroundColor = [UIColor colorWithRed:0.24 green:0.47 blue:0.85 alpha:1.0];
-    self.confirmButton.imageView.layer.cornerRadius = 7.0f;
-    self.confirmButton.layer.shadowOffset = CGSizeMake(0, 7);
-    self.confirmButton.layer.shadowRadius = 5;
-    self.confirmButton.layer.shadowOpacity = 0.25;
-    self.confirmButton.layer.shadowColor = [UIColor blackColor].CGColor;
-    self.confirmButton.layer.masksToBounds = NO;
-    self.confirmButton.frame = CGRectMake((self.view.frame.size.width/2 - 110) + 175, self.view.frame.size.height - 130, 220, 90);
-    [self.confirmButton addTarget:self action:@selector(tappedView) forControlEvents:UIControlEventTouchUpInside];
-    [self.confirmButton setTitle:@"Confirm" forState:UIControlStateNormal];
-    self.confirmButton.titleLabel.font = [UIFont systemFontOfSize:20];
-    [self.confirmButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    [self.confirmButton setImage:[UIImage imageNamed:@"Confirm"] forState:UIControlStateNormal];
+    self.confirmButton.frame = CGRectMake((self.view.frame.size.width/2 - [UIImage imageNamed:@"Confirm"].size.width/2) + 150, self.view.frame.size.height - 130, [UIImage imageNamed:@"Confirm"].size.width,[UIImage imageNamed:@"Confirm"].size.height);
+    [self.confirmButton addTarget:self action:@selector(tappedConfirm) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:self.confirmButton];
     
     
