@@ -10,18 +10,27 @@
 #import <AVFoundation/AVFoundation.h>
 #import "FLAnimatedImage.h"
 
-@interface HRWatchMovieViewController : UIViewController
+@interface HRWatchMovieViewController : UIViewController <UITextFieldDelegate>
 
-- (instancetype)initWithVideoURL:(NSURL *)video andSceneNumber:(int)sceneNumber;
+- (instancetype)initWithVideo:(NSDictionary *)video;
+
+
+@property (nonatomic) NSDictionary *video;
 
 @property (nonatomic) NSURL *videoURL;
 
-@property (nonatomic, strong) UIButton *tryAgainButton;
-@property (nonatomic, strong) UIButton *confirmButton;
+@property (nonatomic, strong) UIButton *pauseOverlayButton;
 
 @property (nonatomic) AVPlayer *avPlayer;
 @property (nonatomic) FLAnimatedImageView *animatedView;
 @property (nonatomic) AVPlayerLayer *videoLayer;
 @property (nonatomic) int sceneNumber;
+
+@property (nonatomic, strong) UIView *pausedOverlay;
+@property (nonatomic, strong) UIButton *playButton;
+@property (nonatomic, strong) UIButton *homeButton;
+
+@property (nonatomic) BOOL playingGIF;
+
 
 @end

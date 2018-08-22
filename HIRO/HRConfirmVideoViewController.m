@@ -9,6 +9,7 @@
 #import "HRConfirmVideoViewController.h"
 #import "HRBookPageViewController.h"
 #import "HRReadyToWatchViewController.h"
+#import "HRFileManager.h"
 
 @interface HRConfirmVideoViewController ()
 
@@ -101,6 +102,17 @@
 }
 
 - (void)tappedConfirm{
+    
+    if(self.sceneNumber == 1){
+        [[HRFileManager sharedManager] setVideo1:self.videoURL];
+    } else if (self.sceneNumber == 2){
+        [[HRFileManager sharedManager] setVideo2:self.videoURL];
+    } else if (self.sceneNumber == 3){
+        [[HRFileManager sharedManager] setVideo3:self.videoURL];
+    } else{
+        [[HRFileManager sharedManager] setVideo4:self.videoURL];
+    }
+    
     [self.avPlayer pause];
     
     if(self.sceneNumber == 1){
@@ -124,6 +136,7 @@
 //        [self.navigationController pushViewController:pageOne animated:YES];
     }
 }
+
 
 /*
 #pragma mark - Navigation

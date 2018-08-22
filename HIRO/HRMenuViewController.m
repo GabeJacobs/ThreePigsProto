@@ -9,6 +9,8 @@
 #import "HRMenuViewController.h"
 #import "HRCameraSceneViewController.h"
 #import "HRBookPageViewController.h"
+#import "HRFileManager.h"
+#import "HRWatchMovieViewController.h"
 
 
 @interface HRMenuViewController ()
@@ -61,7 +63,7 @@
     NSURL *soundFileURL = [NSURL fileURLWithPath:soundFilePath];
     self.player = [[AVAudioPlayer alloc] initWithContentsOfURL:soundFileURL error:nil];
     self.player.numberOfLoops = -1; //infinite
-    [self.player play];
+//    [self.player play];
     
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(startMusicRecieved:)
@@ -82,16 +84,20 @@
 
 - (void)tappedStart {
     
-    HRBookPageViewController *pageOne = [[HRBookPageViewController alloc] initWithPage:1];
-    [self.navigationController pushViewController:pageOne animated:YES];
-
-//    HRCameraSceneViewController *cameraPage = [[HRCameraSceneViewController alloc] initWithSceneNumber:4];
-//    [self.navigationController pushViewController:cameraPage animated:YES];
+//    HRBookPageViewController *pageOne = [[HRBookPageViewController alloc] initWithPage:1];
+//    [self.navigationController pushViewController:pageOne animated:YES];
 //
+//
+    HRCameraSceneViewController *cameraPage = [[HRCameraSceneViewController alloc] initWithSceneNumber:4];
+    [self.navigationController pushViewController:cameraPage animated:YES];
+
 //       HRBookPageViewController *pageOne = [[HRBookPageViewController alloc] initWithPage:12];
 //        [self.navigationController pushViewController:pageOne animated:YES];
-
     
+//       HRWatchMovieViewController *watch = [[HRWatchMovieViewController alloc] init];
+//        [self.navigationController pushViewController:watch animated:YES];
+
+    [[HRFileManager sharedManager] createTempVideo];
 }
 
 - (void)startMusicRecieved:(NSNotification *)notification {

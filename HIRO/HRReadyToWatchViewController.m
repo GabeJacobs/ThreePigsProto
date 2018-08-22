@@ -8,6 +8,7 @@
 
 #import "HRReadyToWatchViewController.h"
 #import "HRWatchMovieViewController.h"
+#import "HRFileManager.h"
 #import <SIAlertView.h>
 
 @interface HRReadyToWatchViewController ()
@@ -45,23 +46,65 @@
 
 - (void)tappedGoHome {
     
-//    SIAlertView *alertView = [[SIAlertView alloc] initWithTitle:@"Save Video" andMessage:@"Would you like to sa"];
-//
-//    [alertView addButtonWithTitle:@"Button1"
-//                             type:SIAlertViewButtonTypeDefault
-//                          handler:^(SIAlertView *alert) {
-//                              NSLog(@"Button1 Clicked");
-//                          }];
-//    [alertView addButtonWithTitle:@"Button2"
-//                             type:SIAlertViewButtonTypeDestructive
-//                          handler:^(SIAlertView *alert) {
-//                              NSLog(@"Button2 Clicked");
-//                          }];
+    SIAlertView *alertView = [[SIAlertView alloc] initWithTitle:@"Save Video?" andMessage:@"Would you like to save your video?"];
+    
+
+    [alertView addButtonWithTitle:@"Discard"
+                             type:SIAlertViewButtonTypeDestructive
+                          handler:^(SIAlertView *alert) {
+                              
+                              [self.navigationController popToRootViewControllerAnimated:YES];
+                          }];
+    
+    [alertView addButtonWithTitle:@"Save"
+                             type:SIAlertViewButtonTypeDefault
+                          handler:^(SIAlertView *alert) {
+                              [self askForTitle];
+                          }];
+    
+    [alertView setBackgroundStyle:SIAlertViewBackgroundStyleSolid];
+    [alertView setTransitionStyle:SIAlertViewTransitionStyleFade];
+    [alertView show];
     
 }
 
+
+-(void)askForTitle {
+    
+    UIAlertController * alertController = [UIAlertController alertControllerWithTitle: @"Video Title"
+                                                                              message: @"Enter a title for your video"
+                                                                       preferredStyle:UIAlertControllerStyleAlert];
+    
+    
+    [alertController addTextFieldWithConfigurationHandler:^(UITextField *textField) {
+        textField.placeholder = @"Title";
+        textField.textColor = [UIColor blackColor];
+        textField.clearButtonMode = UITextFieldViewModeWhileEditing;
+        
+        //        textField.borderStyle = UITextBorderStyleRoundedRect;
+    }];
+    
+    [alertController addAction:[UIAlertAction actionWithTitle:@"Save" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
+        
+        NSArray * textfields = alertController.textFields;
+        UITextField * titleField = textfields[0];
+        if(titleField.text.length <= 0){
+            [self askForTitle];
+        } else{
+            [[HRFileManager sharedManager] setVideoTitle:titleField.text];
+            [self.navigationController popToRootViewControllerAnimated:YES];
+        }
+    }]];
+    
+    
+    [self presentViewController:alertController animated:YES completion:nil];
+    
+}
+
+
 - (void)tappedConfirm{
-    HRWatchMovieViewController *watch  = [[HRWatchMovieViewController alloc] init];
+    NSDictionary *videoDict = [[HRFileManager sharedManager] getTempVideo];
+    HRWatchMovieViewController *watch  = [[HRWatchMovieViewController alloc] initWithVideo:videoDict];
     [self.navigationController pushViewController:watch animated:YES];
 }
 

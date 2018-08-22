@@ -134,7 +134,12 @@
 }
 
 - (void)record {
-    NSURL *outputURL = [[[self applicationDocumentsDirectory] URLByAppendingPathComponent:@"test1"] URLByAppendingPathExtension:@"mov"];
+    
+    NSString *prefixString = @"MyFilename";
+    NSString *guid = [[NSProcessInfo processInfo] globallyUniqueString] ;
+    NSString *uniqueFileName = [NSString stringWithFormat:@"%@_%@", prefixString, guid];
+    
+    NSURL *outputURL = [[[self applicationDocumentsDirectory] URLByAppendingPathComponent:uniqueFileName] URLByAppendingPathExtension:@"mov"];
     
     self.countdownView.hidden = NO;
     self.secondsLeftToRecord = 5;
