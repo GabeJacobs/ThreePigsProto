@@ -19,6 +19,8 @@
 - (void)setVideo3:(NSURL *)video3Url;
 - (void)setVideo4:(NSURL *)video4Url;
 - (void)setVideoTitle:(NSString *)videoTitle;
+- (void)saveCurrentVideo;
+- (NSArray *)getSavedVideosList;
 
 - (NSDictionary*)getTempVideo;
 

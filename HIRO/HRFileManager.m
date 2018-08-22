@@ -31,10 +31,26 @@
             [userDefaults setObject:self.savedVideos forKey:@"SavedVideos"];
             [userDefaults synchronize];
         }
+
         
+//        self.savedVideos = [NSArray array];
+//        [userDefaults setObject:self.savedVideos forKey:@"SavedVideos"];
+//        [userDefaults synchronize];
     }
     
     return self;
+}
+
+- (void)saveCurrentVideo {
+    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+    self.savedVideos = [userDefaults objectForKey:@"SavedVideos"];
+    
+    NSMutableArray *currentVideos = [NSMutableArray arrayWithArray:self.savedVideos];
+    [currentVideos addObject:self.tempVideoDict];
+    self.savedVideos = [NSArray arrayWithArray:currentVideos];
+//    NSData *data = [NSKeyedArchiver archivedDataWithRootObject:self.savedVideos];
+    [userDefaults setObject:self.savedVideos forKey:@"SavedVideos"];
+    [userDefaults synchronize];
 }
 
 - (void)setVideoTitle:(NSString *)title {
@@ -48,23 +64,23 @@
 }
 
 - (void)setVideo1:(NSURL *)video1Url {
-    [self.tempVideoDict setObject:video1Url forKey:@"video1Url"];
+    [self.tempVideoDict setObject:[video1Url absoluteString] forKey:@"video1Url"];
     
 }
 
 - (void)setVideo2:(NSURL *)video2Url {
-    [self.tempVideoDict setObject:video2Url forKey:@"video2Url"];
+    [self.tempVideoDict setObject:[video2Url absoluteString] forKey:@"video2Url"];
     
 
 }
 
 - (void)setVideo3:(NSURL *)video3Url {
-    [self.tempVideoDict setObject:video3Url forKey:@"video3Url"];
+    [self.tempVideoDict setObject:[video3Url absoluteString] forKey:@"video3Url"];
 
 }
 
 - (void)setVideo4:(NSURL *)video4Url {
-    [self.tempVideoDict setObject:video4Url forKey:@"video4Url"];
+    [self.tempVideoDict setObject:[video4Url absoluteString] forKey:@"video4Url"];
 
 }
 
@@ -72,4 +88,11 @@
     NSDictionary *dict = [NSDictionary dictionaryWithDictionary:self.tempVideoDict];
     return dict;
 }
+
+- (NSArray *)getSavedVideosList {
+    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+    self.savedVideos = [userDefaults objectForKey:@"SavedVideos"];
+    return self.savedVideos;
+}
+
 @end

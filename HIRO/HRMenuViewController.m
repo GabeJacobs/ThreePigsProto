@@ -50,7 +50,7 @@
     self.viewVideosButton.layer.shadowColor = [UIColor blackColor].CGColor;
     self.viewVideosButton.layer.masksToBounds = NO;
     self.viewVideosButton.frame = CGRectMake(self.view.frame.size.width/2 - 220 - 75, self.view.frame.size.height/2 + 100, 220, 90);
-    [self.viewVideosButton addTarget:self action:@selector(tappedView) forControlEvents:UIControlEventTouchUpInside];
+    [self.viewVideosButton addTarget:self action:@selector(tappedViewVideos) forControlEvents:UIControlEventTouchUpInside];
     [self.viewVideosButton setTitle:@"Saved Videos" forState:UIControlStateNormal];
     self.viewVideosButton.titleLabel.font = [UIFont fontWithName:@"AvenirNext-Bold" size:23];
     [self.viewVideosButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
@@ -84,12 +84,12 @@
 
 - (void)tappedStart {
     
-//    HRBookPageViewController *pageOne = [[HRBookPageViewController alloc] initWithPage:1];
-//    [self.navigationController pushViewController:pageOne animated:YES];
+    HRBookPageViewController *pageOne = [[HRBookPageViewController alloc] initWithPage:1];
+    [self.navigationController pushViewController:pageOne animated:YES];
+
 //
-//
-    HRCameraSceneViewController *cameraPage = [[HRCameraSceneViewController alloc] initWithSceneNumber:4];
-    [self.navigationController pushViewController:cameraPage animated:YES];
+//    HRCameraSceneViewController *cameraPage = [[HRCameraSceneViewController alloc] initWithSceneNumber:4];
+//    [self.navigationController pushViewController:cameraPage animated:YES];
 
 //       HRBookPageViewController *pageOne = [[HRBookPageViewController alloc] initWithPage:12];
 //        [self.navigationController pushViewController:pageOne animated:YES];
@@ -121,5 +121,10 @@
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
-
+- (void)tappedViewVideos{
+    NSArray *array = [[HRFileManager sharedManager] getSavedVideosList];
+    HRWatchMovieViewController *watch  = [[HRWatchMovieViewController alloc] initWithVideo:array[0] alreadySaved:YES];
+    [self.navigationController pushViewController:watch animated:YES];
+    
+}
 @end

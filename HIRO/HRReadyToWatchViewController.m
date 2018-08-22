@@ -92,10 +92,11 @@
             [self askForTitle];
         } else{
             [[HRFileManager sharedManager] setVideoTitle:titleField.text];
+            [[HRFileManager sharedManager] saveCurrentVideo];
             [self.navigationController popToRootViewControllerAnimated:YES];
         }
     }]];
-    
+
     
     [self presentViewController:alertController animated:YES completion:nil];
     
@@ -104,7 +105,7 @@
 
 - (void)tappedConfirm{
     NSDictionary *videoDict = [[HRFileManager sharedManager] getTempVideo];
-    HRWatchMovieViewController *watch  = [[HRWatchMovieViewController alloc] initWithVideo:videoDict];
+    HRWatchMovieViewController *watch  = [[HRWatchMovieViewController alloc] initWithVideo:videoDict alreadySaved:NO];
     [self.navigationController pushViewController:watch animated:YES];
 }
 

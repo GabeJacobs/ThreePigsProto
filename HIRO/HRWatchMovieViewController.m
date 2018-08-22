@@ -17,9 +17,10 @@
 @implementation HRWatchMovieViewController
 
 
-- (instancetype)initWithVideo:(NSDictionary *)video {
+- (instancetype)initWithVideo:(NSDictionary *)video alreadySaved:(BOOL)isSaved{
     self = [super init];
     if (self) {
+        self.isSaved = isSaved;
         self.video = video;
     }
     return self;
@@ -41,7 +42,7 @@
 
     self.videoLayer = [AVPlayerLayer playerLayerWithPlayer:self.avPlayer];
     self.videoLayer.frame = self.view.frame;
-//    self.videoLayer.videoGravity = AVLayerVideoGrav;
+    self.videoLayer.videoGravity = AVLayerVideoGravityResizeAspectFill;
     [self.view.layer addSublayer:self.videoLayer];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(itemDidFinishPlaying:) name:AVPlayerItemDidPlayToEndTimeNotification object:[self.avPlayer currentItem]];
     [self.avPlayer.currentItem seekToTime:CMTimeMakeWithSeconds(17.8, 60000)];
@@ -90,13 +91,20 @@
     
     // Do any additional setup after loading the view.
     
+    /* Use this code to play an audio file */
+    NSString *soundFilePath = [[NSBundle mainBundle] pathForResource:@"Soundtrack"  ofType:@"mp3"];
+    NSURL *soundFileURL = [NSURL fileURLWithPath:soundFilePath];
+    self.audioPlayer = [[AVAudioPlayer alloc] initWithContentsOfURL:soundFileURL error:nil];
+    self.audioPlayer.numberOfLoops = -1; //Infinite
+    [self.audioPlayer play];
+    
 }
 
 - (void)tappedPause{
     [self.view bringSubviewToFront:self.pausedOverlay];
     [self.view bringSubviewToFront:self.playButton];
     [self.view bringSubviewToFront:self.homeButton];
-    
+    [self.audioPlayer pause];
     [self.avPlayer pause];
     if(self.playingGIF){
         [self.animatedView stopAnimating];
@@ -130,6 +138,8 @@
             
         } completion:^(BOOL finished) {
             [self.avPlayer play];
+            [self.audioPlayer play];
+
         }];
     }
    
@@ -149,7 +159,11 @@
     [alertView addButtonWithTitle:@"Save"
                              type:SIAlertViewButtonTypeDefault
                           handler:^(SIAlertView *alert) {
-                              [self askForTitle];
+                              if(self.isSaved){
+                                  [self askForTitle];
+                              } else{
+                                  [self.navigationController popToRootViewControllerAnimated:YES];
+                              }
                           }];
     
     [alertView setBackgroundStyle:SIAlertViewBackgroundStyleSolid];
@@ -186,6 +200,7 @@
             [self askForTitle];
         } else{
             [[HRFileManager sharedManager] setVideoTitle:titleField.text];
+            [[HRFileManager sharedManager] saveCurrentVideo];
             [self.navigationController popToRootViewControllerAnimated:YES];
         }
     }]];
@@ -199,6 +214,7 @@
 - (void)itemDidFinishPlaying:(NSNotification *)notification {
     if(self.playingGIF){
         self.sceneNumber++;
+        [self.audioPlayer play];
 
         self.playingGIF = NO;
         
@@ -209,20 +225,24 @@
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(itemDidFinishPlaying:) name:AVPlayerItemDidPlayToEndTimeNotification object:[self.avPlayer currentItem]];
         [self.avPlayer play];
         
-        self.animatedView.hidden = YES;
-        [self.animatedView stopAnimating];
+        [self performSelector:@selector(hideGif) withObject:nil afterDelay:.2];
         
 
     } else{
         if(self.sceneNumber == 5) {
-            [self askForTitle];
+            [self.audioPlayer pause];
+            if(self.isSaved){
+                [self askForTitle];
+            } else{
+                [self.navigationController popToRootViewControllerAnimated:YES];
+            }
             return;
         }
         self.playingGIF = YES;
 
         
         
-    
+        [self.audioPlayer pause];
         NSURL *imgPath = [[NSBundle mainBundle] URLForResource:[NSString stringWithFormat:@"SCENE%d", self.sceneNumber] withExtension:@"gif"];
         NSString *path = [imgPath path];
         NSData *data = [[NSFileManager defaultManager] contentsAtPath:path];
@@ -233,8 +253,11 @@
         [self.animatedView startAnimating];
         [self.view bringSubviewToFront:self.animatedView];
         
-        //        [self.avPlayer replaceCurrentItemWithPlayerItem:[AVPlayerItem playerItemWithURL:[self.video objectForKey:[NSString stringWithFormat:@"video%iUrl", self.sceneNumber]]]];
-        [self.avPlayer replaceCurrentItemWithPlayerItem:[AVPlayerItem playerItemWithURL:[self.video objectForKey:[NSString stringWithFormat:@"video4Url"]]]];
+        
+        AVPlayerItem *videoItem =[AVPlayerItem playerItemWithURL:[NSURL URLWithString:[self.video objectForKey:[NSString stringWithFormat:@"video%iUrl", self.sceneNumber]]]];
+        
+        [self.avPlayer replaceCurrentItemWithPlayerItem:videoItem];
+//        [self.avPlayer replaceCurrentItemWithPlayerItem:[AVPlayerItem playerItemWithURL:[self.video objectForKey:[NSString stringWithFormat:@"video4Url"]]]];
         
         self.avPlayer.actionAtItemEnd = AVPlayerActionAtItemEndNone;
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(itemDidFinishPlaying:) name:AVPlayerItemDidPlayToEndTimeNotification object:[self.avPlayer currentItem]];
@@ -245,7 +268,10 @@
     }
 }
 
-
+-(void)hideGif{
+    self.animatedView.hidden = YES;
+    [self.animatedView stopAnimating];
+}
 
 
 @end

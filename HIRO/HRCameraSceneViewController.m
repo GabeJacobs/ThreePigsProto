@@ -138,7 +138,6 @@
     NSString *prefixString = @"MyFilename";
     NSString *guid = [[NSProcessInfo processInfo] globallyUniqueString] ;
     NSString *uniqueFileName = [NSString stringWithFormat:@"%@_%@", prefixString, guid];
-    
     NSURL *outputURL = [[[self applicationDocumentsDirectory] URLByAppendingPathComponent:uniqueFileName] URLByAppendingPathExtension:@"mov"];
     
     self.countdownView.hidden = NO;

@@ -12,12 +12,13 @@
 
 @interface HRWatchMovieViewController : UIViewController <UITextFieldDelegate>
 
-- (instancetype)initWithVideo:(NSDictionary *)video;
+- (instancetype)initWithVideo:(NSDictionary *)video alreadySaved:(BOOL)isSaved;
 
 
 @property (nonatomic) NSDictionary *video;
 
 @property (nonatomic) NSURL *videoURL;
+@property (nonatomic) BOOL isSaved;
 
 @property (nonatomic, strong) UIButton *pauseOverlayButton;
 
@@ -31,6 +32,6 @@
 @property (nonatomic, strong) UIButton *homeButton;
 
 @property (nonatomic) BOOL playingGIF;
-
+@property (nonatomic, strong) AVAudioPlayer *audioPlayer;
 
 @end
