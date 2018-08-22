@@ -159,7 +159,7 @@
     [alertView addButtonWithTitle:@"Save"
                              type:SIAlertViewButtonTypeDefault
                           handler:^(SIAlertView *alert) {
-                              if(self.isSaved){
+                              if(!self.isSaved){
                                   [self askForTitle];
                               } else{
                                   [self.navigationController popToRootViewControllerAnimated:YES];
@@ -231,7 +231,7 @@
     } else{
         if(self.sceneNumber == 5) {
             [self.audioPlayer pause];
-            if(self.isSaved){
+            if(!self.isSaved){
                 [self askForTitle];
             } else{
                 [self.navigationController popToRootViewControllerAnimated:YES];

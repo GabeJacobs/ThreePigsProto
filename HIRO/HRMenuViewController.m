@@ -123,7 +123,7 @@
 
 - (void)tappedViewVideos{
     NSArray *array = [[HRFileManager sharedManager] getSavedVideosList];
-    HRWatchMovieViewController *watch  = [[HRWatchMovieViewController alloc] initWithVideo:array[0] alreadySaved:YES];
+    HRWatchMovieViewController *watch  = [[HRWatchMovieViewController alloc] initWithVideo:[array lastObject] alreadySaved:YES];
     [self.navigationController pushViewController:watch animated:YES];
     
 }
