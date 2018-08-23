@@ -35,7 +35,6 @@
     return self;
 }
 
-
 - (void)viewDidLoad {
     
     [super viewDidLoad];
@@ -89,17 +88,52 @@
     NSString *path = [imgPath path];
     NSData *data = [[NSFileManager defaultManager] contentsAtPath:path];
     FLAnimatedImage *image = [FLAnimatedImage animatedImageWithGIFData:data];
-    self.aniamtedImageView = [[FLAnimatedImageView alloc] init];
-    self.aniamtedImageView.animatedImage = image;
-    self.aniamtedImageView.frame = self.view.frame;
-    self.aniamtedImageView.hidden = YES;
-    [self.view addSubview:self.aniamtedImageView];
+    
+    self.animatedImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"Straw House 10FPS00"]];
+    self.animatedImageView.frame = self.view.frame;
+    self.animatedImageView.hidden = YES;
+    [self loadImages];
+    [self.view addSubview:self.animatedImageView];
+//   self.aniamtedImageView = [[FLAnimatedImageView alloc] init];
+//    self.aniamtedImageView.animatedImage = image;
+//    self.aniamtedImageView.frame = self.view.frame;
+//    self.aniamtedImageView.hidden = YES;
+//    [self.view addSubview:self.aniamtedImageView];
 }
 
+- (void)loadImages {
+    self.imagesLoaded = [NSMutableArray array];
+    NSString *prefix = @"Straw House 10FPS";
+    int numImages = 52;
+    if(self.sceneNumber == 2){
+        prefix = @"Stick House 10 FPS";
+        numImages = 51;
+    } else if(self.sceneNumber == 3){
+        prefix = @"Brick House 10FPS";
+        numImages = 52;
+    }  else if(self.sceneNumber == 4){
+        prefix = @"The End 10 FPS";
+        numImages = 36;
+    }
+    
+    for (int i=0; i<numImages; i++){
+        NSString *strImageName;
+        if(i >= 10){
+            strImageName= [NSString stringWithFormat:@"%@%i",prefix, i];
+        } else{
+            strImageName= [NSString stringWithFormat:@"%@0%i",prefix, i];
+        }
+        UIImage *image= [UIImage imageNamed:strImageName];
+        [self.imagesLoaded addObject:image];
+    }
+    self.animatedImageView.animationImages = self.imagesLoaded;
+
+}
 
 
 - (void)viewWillAppear:(BOOL)animated {
     self.navigationController.navigationBar.hidden = YES;
+    [self reset];
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
@@ -117,20 +151,35 @@
 }
 
 -(void)tappedRecord {
+//    [self.animatedImageView setImage:[UIImage imageNamed:[NSString stringWithFormat:@"Straw House 10FPS%i", self.counter]]];
+
+    float duration = 5.2f;
+    int numImages = 52;
+    if(self.sceneNumber == 2){
+        duration = 5.1f;
+        numImages = 51;
+    } else if(self.sceneNumber == 3){
+        duration = 5.2f;
+        numImages = 52;
+    }  else if(self.sceneNumber == 4){
+        duration = 3.6f;
+        numImages = 36;
+    }
+    
+    self.animatedImageView.animationDuration = duration;
+    [self.animatedImageView startAnimating];
+    
     self.recordButton.hidden = YES;
     self.firstFrameView.hidden = YES;
-    self.aniamtedImageView.hidden = NO;
-    [self.aniamtedImageView startAnimating];
-    
+    self.animatedImageView.hidden = NO;
+
     [self.view bringSubviewToFront:self.recordButton];
     [self.view bringSubviewToFront:self.countdownView];
+//    [self.view bringSubviewToFront:self.animatedImageView];
 
     [self record];
-    if(self.sceneNumber == 4) {
-        [self performSelector:@selector(stopRecord) withObject:nil afterDelay:3.2];
-    } else{
-        [self performSelector:@selector(stopRecord) withObject:nil afterDelay:5.16];
-    }
+    [self performSelector:@selector(stopRecord) withObject:nil afterDelay:duration];
+    
 }
 
 - (void)record {
@@ -150,13 +199,18 @@
 
     [self.camera startRecordingWithOutputUrl:outputURL didRecord:^(LLSimpleCamera *camera, NSURL *outputFileUrl, NSError *error) {
 
-        HRConfirmVideoViewController *confirmController = [[HRConfirmVideoViewController alloc] initWithVideoURL:outputFileUrl andSceneNumber:self.sceneNumber];
-        [self.navigationController pushViewController:confirmController animated:YES];
-        [self reset];
+        
+        double delayInSeconds = 0.15;
+        dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, delayInSeconds * NSEC_PER_SEC);
+        dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
+            
+            HRConfirmVideoViewController *confirmController = [[HRConfirmVideoViewController alloc] initWithVideoURL:outputFileUrl fileName:uniqueFileName andSceneNumber:self.sceneNumber];
+            [self.navigationController pushViewController:confirmController animated:YES];
+            [self reset];
+            
+        });
         
     }];
-    
-    
     
 }
 
@@ -169,7 +223,7 @@
 
 
 - (void)stopRecord {
-    [self.aniamtedImageView stopAnimating];
+//    [self.aniamtedImageView stopAnimating];
     [self.camera stopRecording];
 }
 
@@ -182,6 +236,7 @@
     self.countdownView.hidden = YES;
     self.recordButton.hidden = NO;
     self.firstFrameView.hidden = NO;
+    self.animatedImageView.hidden = YES;
 }
 
 

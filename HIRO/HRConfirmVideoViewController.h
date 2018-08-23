@@ -12,17 +12,21 @@
 
 @interface HRConfirmVideoViewController : UIViewController
 
-- (instancetype)initWithVideoURL:(NSURL *)video andSceneNumber:(int)sceneNumber;
+- (instancetype)initWithVideoURL:(NSURL *)video fileName:(NSString *)fileName andSceneNumber:(int)sceneNumber;
 
 @property (nonatomic) NSURL *videoURL;
+@property (nonatomic) NSString *fileName;
 
 @property (nonatomic, strong) UIButton *tryAgainButton;
 @property (nonatomic, strong) UIButton *confirmButton;
 
 @property (nonatomic) AVPlayer *avPlayer;
-@property (nonatomic) FLAnimatedImageView *animatedView;
 @property (nonatomic) AVPlayerLayer *videoLayer;
 @property (nonatomic) int sceneNumber;
 
+@property (nonatomic, strong) UIWebView *webView;
+@property (nonatomic, strong) UIImageView *animatedImageView;
+
+@property (nonatomic, strong) NSMutableArray *imageArray;
 
 @end

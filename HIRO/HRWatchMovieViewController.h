@@ -8,7 +8,6 @@
 
 #import <UIKit/UIKit.h>
 #import <AVFoundation/AVFoundation.h>
-#import "FLAnimatedImage.h"
 
 @interface HRWatchMovieViewController : UIViewController <UITextFieldDelegate>
 
@@ -23,7 +22,7 @@
 @property (nonatomic, strong) UIButton *pauseOverlayButton;
 
 @property (nonatomic) AVPlayer *avPlayer;
-@property (nonatomic) FLAnimatedImageView *animatedView;
+@property (nonatomic) UIImageView *animatedView;
 @property (nonatomic) AVPlayerLayer *videoLayer;
 @property (nonatomic) int sceneNumber;
 
@@ -33,5 +32,12 @@
 
 @property (nonatomic) BOOL playingGIF;
 @property (nonatomic, strong) AVAudioPlayer *audioPlayer;
+
+@property (nonatomic, strong) NSMutableArray *imageArrayStraw;
+@property (nonatomic, strong) NSMutableArray *imageArrayStick;
+@property (nonatomic, strong) NSMutableArray *imageArrayBrick;
+@property (nonatomic, strong) NSMutableArray *imageArrayEnd;
+
+@property (nonatomic, strong) UIImageView *stillImageFrame;
 
 @end

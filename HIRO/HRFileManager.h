@@ -14,12 +14,14 @@
 
 - (void)createTempVideo;
 
-- (void)setVideo1:(NSURL *)video1Url;
-- (void)setVideo2:(NSURL *)video2Url;
-- (void)setVideo3:(NSURL *)video3Url;
-- (void)setVideo4:(NSURL *)video4Url;
+- (void)setVideo1:(NSString *)video1Url;
+- (void)setVideo2:(NSString *)video2Url;
+- (void)setVideo3:(NSString *)video3Url;
+- (void)setVideo4:(NSString *)video4Url;
 - (void)setVideoTitle:(NSString *)videoTitle;
 - (void)saveCurrentVideo;
+
+- (void)saveVideoList:(NSArray *)array;
 - (NSArray *)getSavedVideosList;
 
 - (NSDictionary*)getTempVideo;

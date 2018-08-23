@@ -11,7 +11,7 @@
 #import "HRBookPageViewController.h"
 #import "HRFileManager.h"
 #import "HRWatchMovieViewController.h"
-
+#import "HRSavedVideosViewController.h"
 
 @interface HRMenuViewController ()
 
@@ -63,17 +63,23 @@
     NSURL *soundFileURL = [NSURL fileURLWithPath:soundFilePath];
     self.player = [[AVAudioPlayer alloc] initWithContentsOfURL:soundFileURL error:nil];
     self.player.numberOfLoops = -1; //infinite
-//    [self.player play];
     
     [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(startMusicRecieved:)
+                                             selector:@selector(stopMusicRecieved:)
                                                  name:@"StopMusic"
                                                object:nil];
     
     [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(stopMusicRecieved:)
+                                             selector:@selector(startMusicRecieved:)
                                                  name:@"StartMusic"
                                                object:nil];
+}
+
+
+- (void)viewWillAppear:(BOOL)animated {
+    if(![self.player isPlaying]){
+        [self.player play];
+    }
 }
 
 
@@ -83,12 +89,12 @@
 }
 
 - (void)tappedStart {
-    
+
     HRBookPageViewController *pageOne = [[HRBookPageViewController alloc] initWithPage:1];
     [self.navigationController pushViewController:pageOne animated:YES];
 
-//
-//    HRCameraSceneViewController *cameraPage = [[HRCameraSceneViewController alloc] initWithSceneNumber:4];
+//////
+//    HRCameraSceneViewController *cameraPage = [[HRCameraSceneViewController alloc] initWithSceneNumber:2];
 //    [self.navigationController pushViewController:cameraPage animated:YES];
 
 //       HRBookPageViewController *pageOne = [[HRBookPageViewController alloc] initWithPage:12];
@@ -101,11 +107,13 @@
 }
 
 - (void)startMusicRecieved:(NSNotification *)notification {
-    [self.player stop];
+    [self.player play];
+
 }
 
 - (void)stopMusicRecieved:(NSNotification *)notification {
-    [self.player play];
+    
+    [self.player stop];
 }
 
 -(BOOL)prefersStatusBarHidden{
@@ -122,9 +130,8 @@
 }
 
 - (void)tappedViewVideos{
-    NSArray *array = [[HRFileManager sharedManager] getSavedVideosList];
-    HRWatchMovieViewController *watch  = [[HRWatchMovieViewController alloc] initWithVideo:[array lastObject] alreadySaved:YES];
-    [self.navigationController pushViewController:watch animated:YES];
-    
+    HRSavedVideosViewController *saved = [[HRSavedVideosViewController alloc] init];
+    [self.navigationController pushViewController:saved animated:YES];
+
 }
 @end

@@ -29,14 +29,16 @@
 @property (strong, nonatomic) NSURL *videoURL;
 @property (strong, nonatomic) UIButton *recordButton;
 @property (nonatomic) int secondsLeftToRecord;
-@property (strong, nonatomic) FLAnimatedImageView *aniamtedImageView;
+//@property (strong, nonatomic) FLAnimatedImageView *aniamtedImageView;
 
 @property (strong, nonatomic) NSTimer *countdownTimer;
 @property (strong, nonatomic) UIView *countdownView;
 @property (strong, nonatomic) UILabel *countdownLabel;
 
 @property (strong, nonatomic) UIImageView *firstFrameView;
+@property (nonatomic, strong) UIImageView *animatedImageView;
 
+@property (nonatomic, strong) NSMutableArray *imagesLoaded;
 
 
 @end

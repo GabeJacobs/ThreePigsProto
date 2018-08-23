@@ -63,24 +63,24 @@
     [self.tempVideoDict setObject:timestamp forKey:@"ID"];
 }
 
-- (void)setVideo1:(NSURL *)video1Url {
-    [self.tempVideoDict setObject:[video1Url absoluteString] forKey:@"video1Url"];
+- (void)setVideo1:(NSString *)video1Url {
+    [self.tempVideoDict setObject:video1Url forKey:@"video1Url"];
     
 }
 
-- (void)setVideo2:(NSURL *)video2Url {
-    [self.tempVideoDict setObject:[video2Url absoluteString] forKey:@"video2Url"];
+- (void)setVideo2:(NSString *)video2Url {
+    [self.tempVideoDict setObject:video2Url forKey:@"video2Url"];
     
 
 }
 
-- (void)setVideo3:(NSURL *)video3Url {
-    [self.tempVideoDict setObject:[video3Url absoluteString] forKey:@"video3Url"];
+- (void)setVideo3:(NSString *)video3Url {
+    [self.tempVideoDict setObject:video3Url forKey:@"video3Url"];
 
 }
 
-- (void)setVideo4:(NSURL *)video4Url {
-    [self.tempVideoDict setObject:[video4Url absoluteString] forKey:@"video4Url"];
+- (void)setVideo4:(NSString *)video4Url {
+    [self.tempVideoDict setObject:video4Url forKey:@"video4Url"];
 
 }
 
@@ -95,4 +95,10 @@
     return self.savedVideos;
 }
 
+- (void)saveVideoList:(NSArray *)array {
+    self.savedVideos = array;
+    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+    [userDefaults setObject:self.savedVideos forKey:@"SavedVideos"];
+    [userDefaults synchronize];
+}
 @end

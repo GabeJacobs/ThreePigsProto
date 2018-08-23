@@ -14,6 +14,6 @@ target 'HIRO' do
   pod 'FLAnimatedImage', '~> 1.0'
   pod 'SIAlertView'
   pod 'LLVideoEditor', '~> 1.0'
-
+  pod 'YYWebImage'
 
 end

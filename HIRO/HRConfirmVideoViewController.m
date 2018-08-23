@@ -18,17 +18,22 @@
 @implementation HRConfirmVideoViewController
 
 
-- (instancetype)initWithVideoURL:(NSURL *)video andSceneNumber:(int)sceneNumber {
+- (instancetype)initWithVideoURL:(NSURL *)video fileName:fileName andSceneNumber:(int)sceneNumber {
     self = [super init];
     if (self) {
         self.videoURL = video;
+        self.fileName = fileName;
         self.sceneNumber = sceneNumber;
     }
     return self;
 }
 
+- (void)viewWillDisappear:(BOOL)animated {
+    [self.avPlayer pause];
+}
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [self loadImages];
     
     self.view.backgroundColor = [UIColor whiteColor];
     
@@ -46,8 +51,9 @@
     [self.view addSubview:self.confirmButton];
     
     
-    
-    self.avPlayer = [AVPlayer playerWithURL:self.videoURL];
+    NSURL *fileURL = [[[self applicationDocumentsDirectory] URLByAppendingPathComponent:self.fileName] URLByAppendingPathExtension:@"mov"];
+
+    self.avPlayer = [AVPlayer playerWithURL:fileURL];
     self.avPlayer.actionAtItemEnd = AVPlayerActionAtItemEndNone;
     
     self.videoLayer = [AVPlayerLayer playerLayerWithPlayer:self.avPlayer];
@@ -58,19 +64,33 @@
 
     [self.avPlayer play];
 
-    NSURL *imgPath = [[NSBundle mainBundle] URLForResource:[NSString stringWithFormat:@"SCENE%d", self.sceneNumber] withExtension:@"gif"];
-    NSString *path = [imgPath path];
-    NSData *data = [[NSFileManager defaultManager] contentsAtPath:path];
+    self.animatedImageView = [[UIImageView alloc] init];
+    self.animatedImageView.frame = self.videoLayer.frame;
+
+  
+    float duration = 5.2f;
+    if(self.sceneNumber == 2){
+        duration = 5.1f;
+    } else if(self.sceneNumber == 3){
+        duration = 5.2f;
+    }  else if(self.sceneNumber == 4){
+        duration = 3.6f;
+    }
+    self.animatedImageView.animationImages = self.imageArray;
+    self.animatedImageView.animationDuration = duration;
+    [self.animatedImageView startAnimating];
+    [self.view addSubview:self.animatedImageView];
     
-    FLAnimatedImage *image = [FLAnimatedImage animatedImageWithGIFData:data];
-    self.animatedView = [[FLAnimatedImageView alloc] init];
-    self.animatedView.animatedImage = image;
-    self.animatedView.frame = self.videoLayer.frame;
-    self.animatedView.runLoopMode = NSDefaultRunLoopMode;
-    [self.view addSubview:self.animatedView];
+//    FLAnimatedImage *image = [FLAnimatedImage animatedImageWithGIFData:data];
+//
+//    self.animatedView = [[FLAnimatedImageView alloc] init];
+//    self.animatedView.animatedImage = image;
+//    [self.animatedView setAnimationDuration:5.16];
+//    self.animatedView.frame = self.videoLayer.frame;
+//    self.animatedView.runLoopMode = NSDefaultRunLoopMode;
+//    [self.view addSubview:self.animatedView];
     
-    // Do any additional setup after loading the view.
-    
+
 }
 
 - (void)didReceiveMemoryWarning {
@@ -79,22 +99,21 @@
 }
 
 - (void)itemDidFinishPlaying:(NSNotification *)notification {
-    [self.animatedView removeFromSuperview];
+//    [self.animatedView removeFromSuperview];
     
-    NSURL *imgPath = [[NSBundle mainBundle] URLForResource:[NSString stringWithFormat:@"SCENE%d", self.sceneNumber] withExtension:@"gif"];
-    NSString *path = [imgPath path];
-    NSData *data = [[NSFileManager defaultManager] contentsAtPath:path];
-    FLAnimatedImage *image = [FLAnimatedImage animatedImageWithGIFData:data];
+//    NSURL *imgPath = [[NSBundle mainBundle] URLForResource:[NSString stringWithFormat:@"SCENE%d", self.sceneNumber] withExtension:@"gif"];
+//    NSString *path = [imgPath path];
+//    NSData *data = [[NSFileManager defaultManager] contentsAtPath:path];
+//    FLAnimatedImage *image = [FLAnimatedImage animatedImageWithGIFData:data];
 
     
-    self.animatedView = [[FLAnimatedImageView alloc] init];
-    self.animatedView.animatedImage = image;
-    self.animatedView.frame = self.videoLayer.frame;
-    self.animatedView.runLoopMode = NSDefaultRunLoopMode;
-    [self.view addSubview:self.animatedView];
+    [self.animatedImageView stopAnimating];
     
     AVPlayerItem *player = [notification object];
     [player seekToTime:kCMTimeZero];
+    
+    [self.animatedImageView startAnimating];
+
 }
 
 - (void)tappedTryAgain {
@@ -104,13 +123,13 @@
 - (void)tappedConfirm{
     
     if(self.sceneNumber == 1){
-        [[HRFileManager sharedManager] setVideo1:self.videoURL];
+        [[HRFileManager sharedManager] setVideo1:self.fileName];
     } else if (self.sceneNumber == 2){
-        [[HRFileManager sharedManager] setVideo2:self.videoURL];
+        [[HRFileManager sharedManager] setVideo2:self.fileName];
     } else if (self.sceneNumber == 3){
-        [[HRFileManager sharedManager] setVideo3:self.videoURL];
+        [[HRFileManager sharedManager] setVideo3:self.fileName];
     } else{
-        [[HRFileManager sharedManager] setVideo4:self.videoURL];
+        [[HRFileManager sharedManager] setVideo4:self.fileName];
     }
     
     [self.avPlayer pause];
@@ -138,14 +157,43 @@
 }
 
 
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+- (NSURL *)applicationDocumentsDirectory {
+    return [[[NSFileManager defaultManager] URLsForDirectory:NSDocumentDirectory
+                                                   inDomains:NSUserDomainMask] lastObject];
 }
-*/
+
+- (void)loadImages{
+   self.imageArray =[NSMutableArray array];
+    NSString *prefix = @"Straw House 10FPS";
+    float duration = 5.2f;
+    int numImages = 52;
+    if(self.sceneNumber == 2){
+        prefix = @"Stick House 10 FPS";
+        duration = 5.1f;
+        numImages = 51;
+    } else if(self.sceneNumber == 3){
+        prefix = @"Brick House 10FPS";
+        duration = 5.2f;
+        numImages = 52;
+    }  else if(self.sceneNumber == 4){
+        prefix = @"The End 10 FPS";
+        duration = 3.6f;
+        numImages = 36;
+    }
+    
+    for (int i=0; i<numImages; i++){
+        NSString *strImageName;
+        if(i >= 10){
+            strImageName= [NSString stringWithFormat:@"%@%i",prefix, i];
+        } else{
+            strImageName= [NSString stringWithFormat:@"%@0%i",prefix, i];
+        }
+        //        NSLog(@"%@",strImageName);
+        UIImage *image= [UIImage imageNamed:strImageName];
+        [ self.imageArray addObject:image];
+    }
+}
+
+
 
 @end
