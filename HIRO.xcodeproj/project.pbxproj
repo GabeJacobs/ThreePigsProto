@@ -9,9 +9,6 @@
 /* Begin PBXBuildFile section */
 		2315855E21023E51006AE508 /* HRBookPageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2315855D21023E51006AE508 /* HRBookPageViewController.m */; };
 		2319C26C211B907C00FCA3FE /* HRConfirmVideoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2319C26B211B907C00FCA3FE /* HRConfirmVideoViewController.m */; };
-		2368F18F212C8C7A002DC500 /* SCENE2.gif in Resources */ = {isa = PBXBuildFile; fileRef = 2368F18E212C8C7A002DC500 /* SCENE2.gif */; };
-		2368F193212CA8D8002DC500 /* SCENE3.gif in Resources */ = {isa = PBXBuildFile; fileRef = 2368F192212CA8D7002DC500 /* SCENE3.gif */; };
-		2368F195212CB034002DC500 /* SCENE4.gif in Resources */ = {isa = PBXBuildFile; fileRef = 2368F194212CB034002DC500 /* SCENE4.gif */; };
 		2368F19B212CB2B8002DC500 /* HRReadyToWatchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2368F199212CB2B8002DC500 /* HRReadyToWatchViewController.m */; };
 		2368F19E212CB616002DC500 /* HRWatchMovieViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2368F19D212CB616002DC500 /* HRWatchMovieViewController.m */; };
 		2368F1A1212DDE4D002DC500 /* HRFileManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 2368F1A0212DDE4D002DC500 /* HRFileManager.m */; };
@@ -223,7 +220,6 @@
 		23CC1A8420D4714F00AB6E51 /* HRCameraSceneViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 23CC1A8320D4714F00AB6E51 /* HRCameraSceneViewController.m */; };
 		23CC1A8720D472AB00AB6E51 /* HRBaseNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 23CC1A8620D472AB00AB6E51 /* HRBaseNavigationController.m */; };
 		23DAB57A2118C1590037E5E2 /* Loop.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 23DAB5792118C1590037E5E2 /* Loop.mp3 */; };
-		A98DD5A82114E15600CE33CD /* SCENE1.gif in Resources */ = {isa = PBXBuildFile; fileRef = A98DD5A72114E15500CE33CD /* SCENE1.gif */; };
 		BAB9E43147C88C298086404C /* libPods-HIRO.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 83B372C2F7B256C612F8E2AA /* libPods-HIRO.a */; };
 /* End PBXBuildFile section */
 
@@ -232,9 +228,6 @@
 		2315855D21023E51006AE508 /* HRBookPageViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HRBookPageViewController.m; sourceTree = "<group>"; };
 		2319C26A211B907C00FCA3FE /* HRConfirmVideoViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HRConfirmVideoViewController.h; sourceTree = "<group>"; };
 		2319C26B211B907C00FCA3FE /* HRConfirmVideoViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HRConfirmVideoViewController.m; sourceTree = "<group>"; };
-		2368F18E212C8C7A002DC500 /* SCENE2.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = SCENE2.gif; sourceTree = "<group>"; };
-		2368F192212CA8D7002DC500 /* SCENE3.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = SCENE3.gif; sourceTree = "<group>"; };
-		2368F194212CB034002DC500 /* SCENE4.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = SCENE4.gif; sourceTree = "<group>"; };
 		2368F196212CB270002DC500 /* HRReadyToWatchViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HRReadyToWatchViewController.h; sourceTree = "<group>"; };
 		2368F199212CB2B8002DC500 /* HRReadyToWatchViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HRReadyToWatchViewController.m; sourceTree = "<group>"; };
 		2368F19C212CB616002DC500 /* HRWatchMovieViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HRWatchMovieViewController.h; sourceTree = "<group>"; };
@@ -458,7 +451,6 @@
 		23DAB5792118C1590037E5E2 /* Loop.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = Loop.mp3; sourceTree = "<group>"; };
 		7B9EAB806A1566A80FCC60CE /* Pods-HIRO.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HIRO.release.xcconfig"; path = "Pods/Target Support Files/Pods-HIRO/Pods-HIRO.release.xcconfig"; sourceTree = "<group>"; };
 		83B372C2F7B256C612F8E2AA /* libPods-HIRO.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-HIRO.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		A98DD5A72114E15500CE33CD /* SCENE1.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = SCENE1.gif; sourceTree = "<group>"; };
 		CE8079098840D1B0B9254F36 /* Pods-HIRO.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HIRO.debug.xcconfig"; path = "Pods/Target Support Files/Pods-HIRO/Pods-HIRO.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -744,10 +736,6 @@
 				23CC1A7520D4511C00AB6E51 /* Assets.xcassets */,
 				23CC1A7720D4511C00AB6E51 /* LaunchScreen.storyboard */,
 				23CC1A7A20D4511C00AB6E51 /* Info.plist */,
-				A98DD5A72114E15500CE33CD /* SCENE1.gif */,
-				2368F18E212C8C7A002DC500 /* SCENE2.gif */,
-				2368F192212CA8D7002DC500 /* SCENE3.gif */,
-				2368F194212CB034002DC500 /* SCENE4.gif */,
 				23DAB5792118C1590037E5E2 /* Loop.mp3 */,
 				2368F1B6212E09B9002DC500 /* Scene1.mp4 */,
 				2368F1BA212E0D90002DC500 /* Scene2.mp4 */,
@@ -1028,11 +1016,7 @@
 				2368F37D212F3CAE002DC500 /* Straw House 10FPS49.png in Resources */,
 				2368F37E212F3CAE002DC500 /* Straw House 10FPS50.png in Resources */,
 				2368F37F212F3CAE002DC500 /* Straw House 10FPS51.png in Resources */,
-				2368F195212CB034002DC500 /* SCENE4.gif in Resources */,
-				2368F18F212C8C7A002DC500 /* SCENE2.gif in Resources */,
-				A98DD5A82114E15600CE33CD /* SCENE1.gif in Resources */,
 				2368F1BD212E0D90002DC500 /* Scene4.mp4 in Resources */,
-				2368F193212CA8D8002DC500 /* SCENE3.gif in Resources */,
 				2368F1BE212E0D90002DC500 /* Scene2.mp4 in Resources */,
 				2368F1BF212E0D90002DC500 /* Scene5.mp4 in Resources */,
 				2368F1B7212E09B9002DC500 /* Scene1.mp4 in Resources */,
@@ -1255,14 +1239,14 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 3939LRJ2J8;
+				DEVELOPMENT_TEAM = N979C9692U;
 				INFOPLIST_FILE = HIRO/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = gabejacobs.HIRO;
+				PRODUCT_BUNDLE_IDENTIFIER = com.HiroStories.ThreePigs;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = 2;
 			};
@@ -1274,14 +1258,14 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 3939LRJ2J8;
+				DEVELOPMENT_TEAM = N979C9692U;
 				INFOPLIST_FILE = HIRO/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = gabejacobs.HIRO;
+				PRODUCT_BUNDLE_IDENTIFIER = com.HiroStories.ThreePigs;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = 2;
 			};

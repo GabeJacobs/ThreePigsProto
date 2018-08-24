@@ -149,8 +149,8 @@
             
         } completion:^(BOOL finished) {
             [self.animatedView startAnimating];
+            [self.avPlayer seekToTime:kCMTimeZero];
             [self.avPlayer play];
-
         }];
     } else{
         [UIView animateWithDuration:.3 animations:^{

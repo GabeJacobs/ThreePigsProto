@@ -84,14 +84,15 @@
     NSLog(@"%d",self.sceneNumber);
     NSLog(@"%@",[NSString stringWithFormat:@"SCENE%d", self.sceneNumber]);
 
-    NSURL *imgPath = [[NSBundle mainBundle] URLForResource:[NSString stringWithFormat:@"SCENE%d", self.sceneNumber] withExtension:@"gif"];
-    NSString *path = [imgPath path];
-    NSData *data = [[NSFileManager defaultManager] contentsAtPath:path];
-    FLAnimatedImage *image = [FLAnimatedImage animatedImageWithGIFData:data];
+//    NSURL *imgPath = [[NSBundle mainBundle] URLForResource:[NSString stringWithFormat:@"SCENE%d", self.sceneNumber] withExtension:@"gif"];
+//    NSString *path = [imgPath path];
+//    NSData *data = [[NSFileManager defaultManager] contentsAtPath:path];
+//    FLAnimatedImage *image = [FLAnimatedImage animatedImageWithGIFData:data];
     
     self.animatedImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"Straw House 10FPS00"]];
     self.animatedImageView.frame = self.view.frame;
     self.animatedImageView.hidden = YES;
+    self.animatedImageView.animationRepeatCount = 1;
     [self loadImages];
     [self.view addSubview:self.animatedImageView];
 //   self.aniamtedImageView = [[FLAnimatedImageView alloc] init];
@@ -154,16 +155,12 @@
 //    [self.animatedImageView setImage:[UIImage imageNamed:[NSString stringWithFormat:@"Straw House 10FPS%i", self.counter]]];
 
     float duration = 5.2f;
-    int numImages = 52;
     if(self.sceneNumber == 2){
         duration = 5.1f;
-        numImages = 51;
     } else if(self.sceneNumber == 3){
         duration = 5.2f;
-        numImages = 52;
     }  else if(self.sceneNumber == 4){
         duration = 3.6f;
-        numImages = 36;
     }
     
     self.animatedImageView.animationDuration = duration;
