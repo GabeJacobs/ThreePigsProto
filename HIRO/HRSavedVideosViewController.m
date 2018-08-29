@@ -188,7 +188,7 @@
         [self tappedDismissButton];
 
     
-        [alertView addButtonWithTitle:@"No"
+        [alertView addButtonWithTitle:@"Cancel"
                                  type:SIAlertViewButtonTypeDefault
                               handler:^(SIAlertView *alert) {
 

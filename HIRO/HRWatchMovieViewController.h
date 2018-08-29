@@ -38,6 +38,5 @@
 @property (nonatomic, strong) NSMutableArray *imageArrayBrick;
 @property (nonatomic, strong) NSMutableArray *imageArrayEnd;
 
-@property (nonatomic, strong) UIImageView *stillImageFrame;
 
 @end

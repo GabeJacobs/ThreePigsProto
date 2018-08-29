@@ -34,7 +34,7 @@
     self.startButton.layer.shadowOpacity = 0.25;
     self.startButton.layer.shadowColor = [UIColor blackColor].CGColor;
     self.startButton.layer.masksToBounds = NO;
-    self.startButton.frame = CGRectMake(self.view.frame.size.width/2 + 75, self.view.frame.size.height/2 + 100, 220, 90);
+    self.startButton.frame = CGRectMake(self.view.frame.size.width/2 + 75, self.view.frame.size.height/2 + 75, 220, 90);
     [self.startButton addTarget:self action:@selector(tappedStart) forControlEvents:UIControlEventTouchUpInside];
     [self.startButton setTitle:@"Read" forState:UIControlStateNormal];
     self.startButton.titleLabel.font = [UIFont fontWithName:@"AvenirNext-Bold" size:23];
@@ -49,7 +49,7 @@
     self.viewVideosButton.layer.shadowOpacity = 0.25;
     self.viewVideosButton.layer.shadowColor = [UIColor blackColor].CGColor;
     self.viewVideosButton.layer.masksToBounds = NO;
-    self.viewVideosButton.frame = CGRectMake(self.view.frame.size.width/2 - 220 - 75, self.view.frame.size.height/2 + 100, 220, 90);
+    self.viewVideosButton.frame = CGRectMake(self.view.frame.size.width/2 - 220 - 75, self.view.frame.size.height/2 + 75, 220, 90);
     [self.viewVideosButton addTarget:self action:@selector(tappedViewVideos) forControlEvents:UIControlEventTouchUpInside];
     [self.viewVideosButton setTitle:@"Saved Videos" forState:UIControlStateNormal];
     self.viewVideosButton.titleLabel.font = [UIFont fontWithName:@"AvenirNext-Bold" size:23];
@@ -92,17 +92,7 @@
 
     HRBookPageViewController *pageOne = [[HRBookPageViewController alloc] initWithPage:1];
     [self.navigationController pushViewController:pageOne animated:YES];
-
-//////
-//    HRCameraSceneViewController *cameraPage = [[HRCameraSceneViewController alloc] initWithSceneNumber:2];
-//    [self.navigationController pushViewController:cameraPage animated:YES];
-
-//       HRBookPageViewController *pageOne = [[HRBookPageViewController alloc] initWithPage:12];
-//        [self.navigationController pushViewController:pageOne animated:YES];
     
-//       HRWatchMovieViewController *watch = [[HRWatchMovieViewController alloc] init];
-//        [self.navigationController pushViewController:watch animated:YES];
-
     [[HRFileManager sharedManager] createTempVideo];
 }
 

@@ -15,5 +15,7 @@ target 'HIRO' do
   pod 'SIAlertView'
   pod 'LLVideoEditor', '~> 1.0'
   pod 'YYWebImage'
+  pod 'Fabric'
+  pod 'Crashlytics'
 
 end

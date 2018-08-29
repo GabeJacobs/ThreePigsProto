@@ -11,12 +11,14 @@
 @implementation HRFileManager
 
 + (id)sharedManager {
-    static HRFileManager *sahredFileManager = nil;
+    static HRFileManager *sharedFileManager = nil;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        sahredFileManager = [[self alloc] init];
+        sharedFileManager = [[self alloc] init];
+        sharedFileManager.tempVideoDict = [[NSMutableDictionary alloc] init];
+
     });
-    return sahredFileManager;
+    return sharedFileManager;
 }
 
 - (id)init {
@@ -58,7 +60,9 @@
 }
 
 -(void)createTempVideo {
-    self.tempVideoDict = [NSMutableDictionary dictionary];
+    if(!self.tempVideoDict) {
+        self.tempVideoDict = [[NSMutableDictionary alloc] init];
+    }
     NSString *timestamp = [NSString stringWithFormat:@"%lu", (long)[[NSDate date] timeIntervalSince1970]];  // to get unique name for your folder
     [self.tempVideoDict setObject:timestamp forKey:@"ID"];
 }
@@ -85,8 +89,7 @@
 }
 
 - (NSDictionary*)getTempVideo {
-    NSDictionary *dict = [NSDictionary dictionaryWithDictionary:self.tempVideoDict];
-    return dict;
+    return self.tempVideoDict;
 }
 
 - (NSArray *)getSavedVideosList {

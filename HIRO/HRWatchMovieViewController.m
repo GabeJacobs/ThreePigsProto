@@ -104,11 +104,6 @@
     [self.animatedView setAnimationRepeatCount:1];
     [self.view addSubview:self.animatedView];
     
-    self.stillImageFrame = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"Straw House 10FPS00"]];
-    self.stillImageFrame.frame = self.view.frame;
-    self.stillImageFrame.hidden = YES;
-    [self.view addSubview:self.stillImageFrame];
-    
     // Do any additional setup after loading the view.
     
     /* Use this code to play an audio file */
@@ -151,6 +146,7 @@
             [self.animatedView startAnimating];
             [self.avPlayer seekToTime:kCMTimeZero];
             [self.avPlayer play];
+            [self.audioPlayer play];
         }];
     } else{
         [UIView animateWithDuration:.3 animations:^{
@@ -262,9 +258,6 @@
         }
         self.playingGIF = YES;
         
-//        self.stillImageFrame.hidden = NO;
-////        [self performSelector:@selector(hideStillImageFrame) withObject:nil afterDelay:1];
-//        
         [self.audioPlayer setVolume:.3 fadeDuration:.2];
         
         [self.animatedView setAnimationImages:[self getRightImageArray]];
@@ -276,18 +269,7 @@
         }  else if(self.sceneNumber == 4){
             duration = 3.6f;
         }
-        
-//        NSURL *fileURL = [[[self applicationDocumentsDirectory] URLByAppendingPathComponent:[NSString stringWithString:[self.video objectForKey:[NSString stringWithFormat:@"video%iUrl", self.sceneNumber]]]] URLByAppendingPathExtension:@"mov"];
-//        AVURLAsset *asset = [AVURLAsset URLAssetWithURL:fileURL options:nil];
-//        AVPlayerItem *playerItem = [AVPlayerItem playerItemWithAsset:asset];
-//
-//        [self.avPlayer replaceCurrentItemWithPlayerItem:playerItem];
-////        [self.avPlayer replaceCurrentItemWithPlayerItem:[AVPlayerItem playerItemWithURL:[self.video objectForKey:[NSString stringWithFormat:@"video4Url"]]]];
-//
-//        self.avPlayer.actionAtItemEnd = AVPlayerActionAtItemEndNone;
-//        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(itemDidFinishPlaying:) name:AVPlayerItemDidPlayToEndTimeNotification object:[self.avPlayer currentItem]];
-////        [self.avPlayer play];
-//
+    
         [self.animatedView setAnimationDuration:duration];
         [self.animatedView startAnimating];
         self.animatedView.hidden = NO;
@@ -308,17 +290,23 @@
     }
 }
 
+- (void)startVideoMainthread {
+    NSURL *fileURL = [[[self applicationDocumentsDirectory] URLByAppendingPathComponent:[NSString stringWithString:[self.video objectForKey:[NSString stringWithFormat:@"video%iUrl", self.sceneNumber]]]] URLByAppendingPathExtension:@"mov"];
+    if(fileURL){
+        AVURLAsset *asset = [AVURLAsset URLAssetWithURL:fileURL options:nil];
+        AVPlayerItem *playerItem = [AVPlayerItem playerItemWithAsset:asset];
+        
+        [self.avPlayer replaceCurrentItemWithPlayerItem:playerItem];
+        
+        self.avPlayer.actionAtItemEnd = AVPlayerActionAtItemEndNone;
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(itemDidFinishPlaying:) name:AVPlayerItemDidPlayToEndTimeNotification object:[self.avPlayer currentItem]];
+    } else {
+        NSAssert(fileURL, @"must have file");
+    }
+}
+
 - (void)startVideo {
-            NSURL *fileURL = [[[self applicationDocumentsDirectory] URLByAppendingPathComponent:[NSString stringWithString:[self.video objectForKey:[NSString stringWithFormat:@"video%iUrl", self.sceneNumber]]]] URLByAppendingPathExtension:@"mov"];
-            AVURLAsset *asset = [AVURLAsset URLAssetWithURL:fileURL options:nil];
-            AVPlayerItem *playerItem = [AVPlayerItem playerItemWithAsset:asset];
-    
-            [self.avPlayer replaceCurrentItemWithPlayerItem:playerItem];
-    
-            self.avPlayer.actionAtItemEnd = AVPlayerActionAtItemEndNone;
-            [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(itemDidFinishPlaying:) name:AVPlayerItemDidPlayToEndTimeNotification object:[self.avPlayer currentItem]];
-    //        [self.avPlayer play];
-    
+    [self performSelectorOnMainThread:@selector(startVideoMainthread) withObject:nil waitUntilDone:YES];
 }
 -(void)hideGif{
     self.animatedView.hidden = YES;

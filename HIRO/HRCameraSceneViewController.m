@@ -81,25 +81,24 @@
     [self.countdownLabel setTextColor:[UIColor whiteColor]];
     [self.countdownView addSubview:self.countdownLabel];
     
-    NSLog(@"%d",self.sceneNumber);
-    NSLog(@"%@",[NSString stringWithFormat:@"SCENE%d", self.sceneNumber]);
-
-//    NSURL *imgPath = [[NSBundle mainBundle] URLForResource:[NSString stringWithFormat:@"SCENE%d", self.sceneNumber] withExtension:@"gif"];
-//    NSString *path = [imgPath path];
-//    NSData *data = [[NSFileManager defaultManager] contentsAtPath:path];
-//    FLAnimatedImage *image = [FLAnimatedImage animatedImageWithGIFData:data];
     
-    self.animatedImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"Straw House 10FPS00"]];
+    self.animatedImageView = [[UIImageView alloc] init];
+    UIImage *preloadedImage = [UIImage imageNamed:@"Straw House 10FPS00"];
+    if(self.sceneNumber == 2){
+        preloadedImage = [UIImage imageNamed:@"Stick House 10 FPS01"];
+    } else if(self.sceneNumber == 3){
+        preloadedImage = [UIImage imageNamed:@"Brick House 10FPS00"];
+    }  else if(self.sceneNumber == 4){
+        preloadedImage = [UIImage imageNamed:@"The End 10 FPS00"];
+    }
+    [self.animatedImageView setImage:preloadedImage];
     self.animatedImageView.frame = self.view.frame;
     self.animatedImageView.hidden = YES;
     self.animatedImageView.animationRepeatCount = 1;
     [self loadImages];
     [self.view addSubview:self.animatedImageView];
-//   self.aniamtedImageView = [[FLAnimatedImageView alloc] init];
-//    self.aniamtedImageView.animatedImage = image;
-//    self.aniamtedImageView.frame = self.view.frame;
-//    self.aniamtedImageView.hidden = YES;
-//    [self.view addSubview:self.aniamtedImageView];
+
+    
 }
 
 - (void)loadImages {
