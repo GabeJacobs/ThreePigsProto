@@ -290,9 +290,11 @@
     }
 }
 
-- (void)startVideoMainthread {
-    NSURL *fileURL = [[[self applicationDocumentsDirectory] URLByAppendingPathComponent:[NSString stringWithString:[self.video objectForKey:[NSString stringWithFormat:@"video%iUrl", self.sceneNumber]]]] URLByAppendingPathExtension:@"mov"];
-    if(fileURL){
+- (void)startVideo {
+    if([self.video objectForKey:[NSString stringWithFormat:@"video%iUrl", self.sceneNumber]]){
+        NSString *urlString = [self.video objectForKey:[NSString stringWithFormat:@"video%iUrl", self.sceneNumber]];
+        NSURL *fileURL = [[[self applicationDocumentsDirectory] URLByAppendingPathComponent:urlString] URLByAppendingPathExtension:@"mov"];
+
         AVURLAsset *asset = [AVURLAsset URLAssetWithURL:fileURL options:nil];
         AVPlayerItem *playerItem = [AVPlayerItem playerItemWithAsset:asset];
         
@@ -301,13 +303,15 @@
         self.avPlayer.actionAtItemEnd = AVPlayerActionAtItemEndNone;
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(itemDidFinishPlaying:) name:AVPlayerItemDidPlayToEndTimeNotification object:[self.avPlayer currentItem]];
     } else {
-        NSAssert(fileURL, @"must have file");
+        SIAlertView *alertView = [[SIAlertView alloc] initWithTitle:@"Crash" andMessage:[NSString stringWithFormat:@"%@", [self.video description]]];
+    
+        [alertView setBackgroundStyle:SIAlertViewBackgroundStyleSolid];
+        [alertView setTransitionStyle:SIAlertViewTransitionStyleFade];
+        [alertView show];
+
     }
 }
 
-- (void)startVideo {
-    [self performSelectorOnMainThread:@selector(startVideoMainthread) withObject:nil waitUntilDone:YES];
-}
 -(void)hideGif{
     self.animatedView.hidden = YES;
     [self.animatedView stopAnimating];
