@@ -33,13 +33,10 @@
     self.backgroundImage.frame = self.view.frame;
     [self.view addSubview:self.backgroundImage];
     
-    
     self.pageText = [[UIImageView alloc] initWithImage:[UIImage imageNamed:[NSString stringWithFormat:@"P%d-Text", self.pageNumber]]];
     self.pageText.alpha = 0.0;
     self.pageText.frame = self.view.frame;
     [self.backgroundImage addSubview:self.pageText];
-
-    
     
     [self performSelector:@selector(showText) withObject:nil afterDelay:0.8f];
     self.nextPageButton = [UIButton buttonWithType:UIButtonTypeCustom];

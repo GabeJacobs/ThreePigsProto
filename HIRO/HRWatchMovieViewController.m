@@ -22,8 +22,13 @@
     if (self) {
         self.isSaved = isSaved;
         self.video = video;
+        self.sceneNumber = 1;
     }
     return self;
+}
+
+- (void)viewDidAppear:(BOOL)animated {
+    self.sceneNumber = 1;
 }
 
 - (void)viewDidLoad {
@@ -51,6 +56,7 @@
     self.videoLayer.frame = self.view.frame;
     self.videoLayer.videoGravity = AVLayerVideoGravityResizeAspectFill;
     [self.view.layer addSublayer:self.videoLayer];
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(itemDidFinishPlaying:) name:AVPlayerItemDidPlayToEndTimeNotification object:[self.avPlayer currentItem]];
 
     [self.avPlayer play];
@@ -232,6 +238,17 @@
 - (void)itemDidFinishPlaying:(NSNotification *)notification {
     if(self.playingGIF){
         self.sceneNumber++;
+//        SIAlertView *alertView = [[SIAlertView alloc] initWithTitle:@"increased scene number" andMessage:@""];
+//
+//        [alertView setBackgroundStyle:SIAlertViewBackgroundStyleSolid];
+//        [alertView setTransitionStyle:SIAlertViewTransitionStyleFade];
+//        [alertView show];
+//        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 3 * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
+//            [alertView dismissAnimated:YES];
+//        });
+        
+    
+        
         [self.audioPlayer setVolume:1.0 fadeDuration:.2];
 
         self.playingGIF = NO;
@@ -240,6 +257,7 @@
         NSURL *videoURL = [NSURL fileURLWithPath:filePath];
         [self.avPlayer replaceCurrentItemWithPlayerItem:[AVPlayerItem playerItemWithURL:videoURL]];
         self.avPlayer.actionAtItemEnd = AVPlayerActionAtItemEndNone;
+        [[NSNotificationCenter defaultCenter] removeObserver:self];
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(itemDidFinishPlaying:) name:AVPlayerItemDidPlayToEndTimeNotification object:[self.avPlayer currentItem]];
         [self.avPlayer play];
         
@@ -254,6 +272,7 @@
             } else{
                 [self.navigationController popViewControllerAnimated:YES];
             }
+            self.sceneNumber = 1;
             return;
         }
         self.playingGIF = YES;
@@ -291,25 +310,40 @@
 }
 
 - (void)startVideo {
-    if([self.video objectForKey:[NSString stringWithFormat:@"video%iUrl", self.sceneNumber]]){
+    NSString *keyString = [NSString stringWithFormat:@"video%iUrl", self.sceneNumber];
+//    SIAlertView *alertView = [[SIAlertView alloc] initWithTitle:@"LOG" andMessage:[NSString stringWithFormat:@"SCENE NUMBER: %i, KEYSTRING: %@, FULL DICTIONARY: %@", self.sceneNumber, keyString, [self.video description]]];
+//
+//    [alertView setBackgroundStyle:SIAlertViewBackgroundStyleSolid];
+//    [alertView setTransitionStyle:SIAlertViewTransitionStyleFade];
+//    [alertView show];
+//
+//
+//    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 3 * NSEC_PER_SEC), dispatch_get_main_queue(), ^{
+//        [alertView dismissAnimated:YES];
+//    });
+//
+    
+    if([self.video objectForKey:keyString]){
         NSString *urlString = [self.video objectForKey:[NSString stringWithFormat:@"video%iUrl", self.sceneNumber]];
         NSURL *fileURL = [[[self applicationDocumentsDirectory] URLByAppendingPathComponent:urlString] URLByAppendingPathExtension:@"mov"];
-
+        
         AVURLAsset *asset = [AVURLAsset URLAssetWithURL:fileURL options:nil];
         AVPlayerItem *playerItem = [AVPlayerItem playerItemWithAsset:asset];
         
         [self.avPlayer replaceCurrentItemWithPlayerItem:playerItem];
         
         self.avPlayer.actionAtItemEnd = AVPlayerActionAtItemEndNone;
+        [[NSNotificationCenter defaultCenter] removeObserver:self];
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(itemDidFinishPlaying:) name:AVPlayerItemDidPlayToEndTimeNotification object:[self.avPlayer currentItem]];
     } else {
-        SIAlertView *alertView = [[SIAlertView alloc] initWithTitle:@"Crash" andMessage:[NSString stringWithFormat:@"%@", [self.video description]]];
-    
+        SIAlertView *alertView = [[SIAlertView alloc] initWithTitle:@"Crash" andMessage:[NSString stringWithFormat:@"SCENE NUMBER: %i, KEYSTRING: %@, FULL DICTIONARY: %@", self.sceneNumber, keyString, [self.video description]]];
+        
         [alertView setBackgroundStyle:SIAlertViewBackgroundStyleSolid];
         [alertView setTransitionStyle:SIAlertViewTransitionStyleFade];
         [alertView show];
-
+        
     }
+    
 }
 
 -(void)hideGif{

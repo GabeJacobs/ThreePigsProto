@@ -34,10 +34,7 @@
             [userDefaults synchronize];
         }
 
-        
-//        self.savedVideos = [NSArray array];
-//        [userDefaults setObject:self.savedVideos forKey:@"SavedVideos"];
-//        [userDefaults synchronize];
+
     }
     
     return self;
