@@ -14,7 +14,7 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "CAB3990B07EB77B44E2487489D90ABDA"
+               BlueprintIdentifier = "9C82E7B1131BA14A98EB92CFDC40CAD6"
                BlueprintName = "LLVideoEditor"
                ReferencedContainer = "container:Pods.xcodeproj"
                BuildableName = "libLLVideoEditor.a">

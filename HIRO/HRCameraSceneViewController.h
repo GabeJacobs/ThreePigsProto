@@ -14,6 +14,7 @@
 #import <GPUImage.h>
 #import <LLSimpleCamera.h>
 #import "FLAnimatedImage.h"
+#import <MBProgressHUD.h>
 
 @interface HRCameraSceneViewController : UIViewController
 
@@ -40,5 +41,6 @@
 
 @property (nonatomic, strong) NSMutableArray *imagesLoaded;
 
+@property (nonatomic, strong) MBProgressHUD *progressHud;
 
 @end

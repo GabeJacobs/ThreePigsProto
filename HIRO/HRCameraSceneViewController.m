@@ -14,6 +14,7 @@
 #import <AVFoundation/AVFoundation.h>
 #import <AVKit/AVKit.h>
 #import "HRConfirmVideoViewController.h"
+#import <MBProgressHUD.h>
 
 @import MobileCoreServices;
 
@@ -42,7 +43,6 @@
     [[NSNotificationCenter defaultCenter]
      postNotificationName:@"StopMusic"
      object:self];
-
     
     self.view.backgroundColor = [UIColor whiteColor];
     
@@ -66,6 +66,7 @@
     [self.recordButton setImage:[UIImage imageNamed:@"RecordButton"] forState:UIControlStateNormal];
     self.recordButton.frame = CGRectMake(self.view.frame.size.width/2 - [UIImage imageNamed:@"RecordButton"].size.width/2, self.view.frame.size.height - 140, [UIImage imageNamed:@"RecordButton"].size.width, [UIImage imageNamed:@"RecordButton"].size.height);
     [self.recordButton addTarget:self action:@selector(tappedRecord) forControlEvents:UIControlEventTouchUpInside];
+    [self.recordButton setShowsTouchWhenHighlighted:NO];
     [self.view addSubview:self.recordButton];
     
     self.countdownView = [[UIView alloc] initWithFrame:CGRectMake(self.view.frame.size.width - 85 - 20, 26, 85,85)];
@@ -98,6 +99,13 @@
     [self loadImages];
     [self.view addSubview:self.animatedImageView];
 
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, 0.01 * NSEC_PER_SEC);
+    dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
+        self.animatedImageView.hidden = YES;
+        [self.animatedImageView startAnimating];
+        [MBProgressHUD hideHUDForView:self.view animated:YES];
+    });
     
 }
 
@@ -151,7 +159,36 @@
 }
 
 -(void)tappedRecord {
-//    [self.animatedImageView setImage:[UIImage imageNamed:[NSString stringWithFormat:@"Straw House 10FPS%i", self.counter]]];
+    
+ 
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    self.progressHud = [MBProgressHUD HUDForView:self.view];
+    self.progressHud.mode = MBProgressHUDModeCustomView;
+    self.progressHud.label.text = @"3";
+    self.progressHud.label.font = [UIFont fontWithName:@"AvenirNext-Bold" size:30];
+    [self.progressHud showAnimated:YES];
+    
+//    MBProgressHUD
+////    SVProgressHUD setInfoImage:
+////    [SVProgressHUD setFont:[UIFont preferredFontForTextStyle:UIFontTextStyleHeadline]];
+////    [SVProgressHUD showWithStatus:@"3"];
+    
+    [self performSelector:@selector(showTwo) withObject:nil afterDelay:1.0];
+
+}
+- (void)showTwo{
+    self.progressHud.label.text = @"2";
+    [self performSelector:@selector(showOne) withObject:nil afterDelay:1.0];
+
+}
+
+- (void)showOne {
+    self.progressHud.label.text = @"1";
+    [self performSelector:@selector(runRecordPrep) withObject:nil afterDelay:1.0];
+}
+
+- (void)runRecordPrep {
+    [self.progressHud hideAnimated:NO];
 
     float duration = 5.2f;
     if(self.sceneNumber == 2){
@@ -168,17 +205,19 @@
     self.recordButton.hidden = YES;
     self.firstFrameView.hidden = YES;
     self.animatedImageView.hidden = NO;
-
+    
     [self.view bringSubviewToFront:self.recordButton];
     [self.view bringSubviewToFront:self.countdownView];
-//    [self.view bringSubviewToFront:self.animatedImageView];
-
+    //    [self.view bringSubviewToFront:self.animatedImageView];
+    
     [self record];
     [self performSelector:@selector(stopRecord) withObject:nil afterDelay:duration];
     
 }
 
 - (void)record {
+    [self.animatedImageView startAnimating];
+    self.animatedImageView.hidden = NO;
     
     NSString *prefixString = @"MyFilename";
     NSString *guid = [[NSProcessInfo processInfo] globallyUniqueString] ;

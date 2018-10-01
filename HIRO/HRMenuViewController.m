@@ -89,10 +89,13 @@
 }
 
 - (void)tappedStart {
+//
+//    HRCameraSceneViewController *camera = [[HRCameraSceneViewController alloc] initWithSceneNumber:1];
+//    [self.navigationController pushViewController:camera animated:YES];
 
     HRBookPageViewController *pageOne = [[HRBookPageViewController alloc] initWithPage:1];
     [self.navigationController pushViewController:pageOne animated:YES];
-    
+
     [[HRFileManager sharedManager] createTempVideo];
 }
 

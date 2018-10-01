@@ -17,5 +17,5 @@ target 'HIRO' do
   pod 'YYWebImage'
   pod 'Fabric'
   pod 'Crashlytics'
-
+  pod 'MBProgressHUD'
 end
