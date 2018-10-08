@@ -69,6 +69,14 @@
     [self.recordButton setShowsTouchWhenHighlighted:NO];
     [self.view addSubview:self.recordButton];
     
+    self.switchCamera = [UIButton buttonWithType:UIButtonTypeCustom];
+    [self.switchCamera setImage:[UIImage imageNamed:@"SwitchCamera"] forState:UIControlStateNormal];
+    self.switchCamera.frame = CGRectMake(self.view.frame.size.height - 80 - 15, 30 , 80, 80);
+    self.switchCamera.center = CGPointMake(self.switchCamera.frame.origin.x, self.recordButton.frame.origin.y);
+    [self.switchCamera addTarget:self action:@selector(tappedSwitch) forControlEvents:UIControlEventTouchUpInside];
+    [self.switchCamera setShowsTouchWhenHighlighted:NO];
+    [self.view addSubview:self.switchCamera];
+    
     self.countdownView = [[UIView alloc] initWithFrame:CGRectMake(self.view.frame.size.width - 85 - 20, 26, 85,85)];
     self.countdownView.backgroundColor = [UIColor colorWithRed:0.0/255.0f green:174.0f/255.0f blue:239.0f/255.0f alpha:1.0];
     self.countdownView.layer.cornerRadius = 85/2;
@@ -131,7 +139,10 @@
         } else{
             strImageName= [NSString stringWithFormat:@"%@0%i",prefix, i];
         }
-        UIImage *image= [UIImage imageNamed:strImageName];
+
+        UIImage *image = [UIImage imageWithContentsOfFile:[[NSBundle mainBundle] pathForResource:[NSString stringWithFormat:@"%@.png",strImageName] ofType:nil]];
+//        UIImage *image= [UIImage imageNamed:strImageName];
+
         [self.imagesLoaded addObject:image];
     }
     self.animatedImageView.animationImages = self.imagesLoaded;
@@ -160,12 +171,14 @@
 
 -(void)tappedRecord {
     
+    self.recordButton.hidden = YES;
+    self.switchCamera.hidden = YES;
  
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     self.progressHud = [MBProgressHUD HUDForView:self.view];
     self.progressHud.mode = MBProgressHUDModeCustomView;
     self.progressHud.label.text = @"3";
-    self.progressHud.label.font = [UIFont fontWithName:@"AvenirNext-Bold" size:30];
+    self.progressHud.label.font = [UIFont fontWithName:@"AvenirNext-Bold" size:40];
     [self.progressHud showAnimated:YES];
     
 //    MBProgressHUD
@@ -184,11 +197,15 @@
 
 - (void)showOne {
     self.progressHud.label.text = @"1";
-    [self performSelector:@selector(runRecordPrep) withObject:nil afterDelay:1.0];
+    [self performSelector:@selector(hideProgressHud) withObject:nil afterDelay:1.2];
+    [self performSelector:@selector(runRecordPrep) withObject:nil afterDelay:1.5];
 }
 
-- (void)runRecordPrep {
+- (void)hideProgressHud{
     [self.progressHud hideAnimated:NO];
+
+}
+- (void)runRecordPrep {
 
     float duration = 5.2f;
     if(self.sceneNumber == 2){
@@ -200,13 +217,16 @@
     }
     
     self.animatedImageView.animationDuration = duration;
-    [self.animatedImageView startAnimating];
+//    [self.animatedImageView startAnimating];
     
     self.recordButton.hidden = YES;
+    self.switchCamera.hidden = YES;
+    
     self.firstFrameView.hidden = YES;
     self.animatedImageView.hidden = NO;
     
     [self.view bringSubviewToFront:self.recordButton];
+    [self.view bringSubviewToFront:self.switchCamera];
     [self.view bringSubviewToFront:self.countdownView];
     //    [self.view bringSubviewToFront:self.animatedImageView];
     
@@ -216,21 +236,14 @@
 }
 
 - (void)record {
-    [self.animatedImageView startAnimating];
-    self.animatedImageView.hidden = NO;
+
     
     NSString *prefixString = @"MyFilename";
     NSString *guid = [[NSProcessInfo processInfo] globallyUniqueString] ;
     NSString *uniqueFileName = [NSString stringWithFormat:@"%@_%@", prefixString, guid];
     NSURL *outputURL = [[[self applicationDocumentsDirectory] URLByAppendingPathComponent:uniqueFileName] URLByAppendingPathExtension:@"mov"];
     
-    self.countdownView.hidden = NO;
-    self.secondsLeftToRecord = 5;
-    if(self.sceneNumber == 4){
-        self.secondsLeftToRecord = 3;
-    }
-    [self setCountdown];
-
+  
 
     [self.camera startRecordingWithOutputUrl:outputURL didRecord:^(LLSimpleCamera *camera, NSURL *outputFileUrl, NSError *error) {
 
@@ -246,6 +259,16 @@
         });
         
     }];
+    
+    [self.animatedImageView startAnimating];
+    self.animatedImageView.hidden = NO;
+    self.countdownView.hidden = NO;
+    self.secondsLeftToRecord = 5;
+    if(self.sceneNumber == 4){
+        self.secondsLeftToRecord = 3;
+    }
+    [self setCountdown];
+
     
 }
 
@@ -270,9 +293,13 @@
 - (void)reset{
     self.countdownView.hidden = YES;
     self.recordButton.hidden = NO;
+    self.switchCamera.hidden = NO;
     self.firstFrameView.hidden = NO;
     self.animatedImageView.hidden = YES;
 }
 
-
+- (void)tappedSwitch {
+    [self.camera togglePosition];
+    
+}
 @end

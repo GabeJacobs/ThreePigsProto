@@ -29,6 +29,8 @@
 @property (nonatomic, strong) NSTimer * timer;
 @property (strong, nonatomic) NSURL *videoURL;
 @property (strong, nonatomic) UIButton *recordButton;
+@property (strong, nonatomic) UIButton *switchCamera;
+
 @property (nonatomic) int secondsLeftToRecord;
 //@property (strong, nonatomic) FLAnimatedImageView *aniamtedImageView;
 
