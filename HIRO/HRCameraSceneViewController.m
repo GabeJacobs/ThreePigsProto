@@ -139,7 +139,7 @@
         }
 
         UIImage *image= [UIImage imageNamed:strImageName];
-
+//        UIImage *image = [UIImage imageWithContentsOfFile:[[NSBundle mainBundle] pathForResource:[NSString stringWithFormat:@"%@.png",strImageName] ofType:nil]];
         [self.imagesLoaded addObject:image];
     }
     self.animatedImageView.animationImages = self.imagesLoaded;

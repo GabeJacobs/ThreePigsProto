@@ -303,14 +303,12 @@
         }
         [self.view bringSubviewToFront:self.animatedView];
         
-        [self performSelector:@selector(startVideo) withObject:nil afterDelay:.3];
 
+        [self performSelectorOnMainThread:@selector(startVideo) withObject:nil waitUntilDone:NO];
+        
     }
 }
 
-- (void)startVideoDelayed {
-    [self performSelectorOnMainThread:@selector(startVideo) withObject:nil waitUntilDone:YES];
-}
 - (void)startVideo {
     NSString *keyString = [NSString stringWithFormat:@"video%iUrl", self.sceneNumber];
 //    SIAlertView *alertView = [[SIAlertView alloc] initWithTitle:@"LOG" andMessage:[NSString stringWithFormat:@"SCENE NUMBER: %i, KEYSTRING: %@, FULL DICTIONARY: %@", self.sceneNumber, keyString, [self.video description]]];
@@ -368,9 +366,8 @@
         } else{
             strImageName= [NSString stringWithFormat:@"%@0%i",prefix, i];
         }
-        UIImage *image= [UIImage imageNamed:strImageName];
-//        UIImage *image = [UIImage imageWithContentsOfFile:[[NSBundle mainBundle] pathForResource:[NSString stringWithFormat:@"%@.png",strImageName] ofType:nil]];
-
+//        UIImage *image= [UIImage imageNamed:strImageName];
+        UIImage *image = [UIImage imageWithContentsOfFile:[[NSBundle mainBundle] pathForResource:[NSString stringWithFormat:@"%@.png",strImageName] ofType:nil]];
         [self.imageArrayStraw addObject:image];
     }
 
@@ -384,8 +381,9 @@
         } else{
             strImageName= [NSString stringWithFormat:@"%@0%i",prefix, i];
         }
-        UIImage *image= [UIImage imageNamed:strImageName];
-//        UIImage *image = [UIImage imageWithContentsOfFile:[[NSBundle mainBundle] pathForResource:[NSString stringWithFormat:@"%@.png",strImageName] ofType:nil]];
+//        UIImage *image= [UIImage imageNamed:strImageName];
+        UIImage *image = [UIImage imageWithContentsOfFile:[[NSBundle mainBundle] pathForResource:[NSString stringWithFormat:@"%@.png",strImageName] ofType:nil]];
+
         [self.imageArrayStick addObject:image];
     }
     self.imageArrayBrick =[NSMutableArray array];
@@ -400,6 +398,7 @@
         }
         UIImage *image= [UIImage imageNamed:strImageName];
 //        UIImage *image = [UIImage imageWithContentsOfFile:[[NSBundle mainBundle] pathForResource:[NSString stringWithFormat:@"%@.png",strImageName] ofType:nil]];
+
         [self.imageArrayBrick addObject:image];
     }
     self.imageArrayEnd =[NSMutableArray array];
@@ -412,9 +411,9 @@
         } else{
             strImageName= [NSString stringWithFormat:@"%@0%i",prefix, i];
         }
-        UIImage *image= [UIImage imageNamed:strImageName];
-//        UIImage *image = [UIImage imageWithContentsOfFile:[[NSBundle mainBundle] pathForResource:[NSString stringWithFormat:@"%@.png",strImageName] ofType:nil]];
-        
+//        UIImage *image= [UIImage imageNamed:strImageName];
+        UIImage *image = [UIImage imageWithContentsOfFile:[[NSBundle mainBundle] pathForResource:[NSString stringWithFormat:@"%@.png",strImageName] ofType:nil]];
+
         [self.imageArrayEnd addObject:image];
     }
 }
