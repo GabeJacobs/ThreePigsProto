@@ -366,7 +366,8 @@
         } else{
             strImageName= [NSString stringWithFormat:@"%@0%i",prefix, i];
         }
-        UIImage *image= [UIImage imageNamed:strImageName];
+//        UIImage *image= [UIImage imageNamed:strImageName];
+        UIImage *image = [UIImage imageWithContentsOfFile:[[NSBundle mainBundle] pathForResource:[NSString stringWithFormat:@"%@.png",strImageName] ofType:nil]];
         [self.imageArrayStraw addObject:image];
     }
 
@@ -380,7 +381,9 @@
         } else{
             strImageName= [NSString stringWithFormat:@"%@0%i",prefix, i];
         }
-        UIImage *image= [UIImage imageNamed:strImageName];
+//        UIImage *image= [UIImage imageNamed:strImageName];
+        UIImage *image = [UIImage imageWithContentsOfFile:[[NSBundle mainBundle] pathForResource:[NSString stringWithFormat:@"%@.png",strImageName] ofType:nil]];
+
         [self.imageArrayStick addObject:image];
     }
     self.imageArrayBrick =[NSMutableArray array];
@@ -394,6 +397,8 @@
             strImageName= [NSString stringWithFormat:@"%@0%i",prefix, i];
         }
         UIImage *image= [UIImage imageNamed:strImageName];
+//        UIImage *image = [UIImage imageWithContentsOfFile:[[NSBundle mainBundle] pathForResource:[NSString stringWithFormat:@"%@.png",strImageName] ofType:nil]];
+
         [self.imageArrayBrick addObject:image];
     }
     self.imageArrayEnd =[NSMutableArray array];
@@ -406,7 +411,8 @@
         } else{
             strImageName= [NSString stringWithFormat:@"%@0%i",prefix, i];
         }
-        UIImage *image= [UIImage imageNamed:strImageName];
+//        UIImage *image= [UIImage imageNamed:strImageName];
+        UIImage *image = [UIImage imageWithContentsOfFile:[[NSBundle mainBundle] pathForResource:[NSString stringWithFormat:@"%@.png",strImageName] ofType:nil]];
 
         [self.imageArrayEnd addObject:image];
     }

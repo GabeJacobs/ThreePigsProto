@@ -71,12 +71,14 @@
     
     self.switchCamera = [UIButton buttonWithType:UIButtonTypeCustom];
     [self.switchCamera setImage:[UIImage imageNamed:@"SwitchCamera"] forState:UIControlStateNormal];
-    self.switchCamera.frame = CGRectMake(19, self.recordButton.frame.origin.y + 36 , 75, 75);
+    self.switchCamera.frame = CGRectMake(self.view.frame.size.height - 80 - 15, 30 , 80, 80);
+    self.switchCamera.center = CGPointMake(self.switchCamera.frame.origin.x, self.recordButton.frame.origin.y);
     [self.switchCamera addTarget:self action:@selector(tappedSwitch) forControlEvents:UIControlEventTouchUpInside];
+    [self.switchCamera setShowsTouchWhenHighlighted:NO];
     [self.view addSubview:self.switchCamera];
     
     self.countdownView = [[UIView alloc] initWithFrame:CGRectMake(self.view.frame.size.width - 85 - 20, 26, 85,85)];
-    self.countdownView.backgroundColor = [UIColor redColor];
+    self.countdownView.backgroundColor = [UIColor colorWithRed:0.0/255.0f green:174.0f/255.0f blue:239.0f/255.0f alpha:1.0];
     self.countdownView.layer.cornerRadius = 85/2;
     self.countdownView.hidden = YES;
     [self.view addSubview:self.countdownView];
@@ -138,7 +140,8 @@
             strImageName= [NSString stringWithFormat:@"%@0%i",prefix, i];
         }
 
-        UIImage *image= [UIImage imageNamed:strImageName];
+        UIImage *image = [UIImage imageWithContentsOfFile:[[NSBundle mainBundle] pathForResource:[NSString stringWithFormat:@"%@.png",strImageName] ofType:nil]];
+//        UIImage *image= [UIImage imageNamed:strImageName];
 
         [self.imagesLoaded addObject:image];
     }
@@ -174,10 +177,8 @@
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     self.progressHud = [MBProgressHUD HUDForView:self.view];
     self.progressHud.mode = MBProgressHUDModeCustomView;
-    self.progressHud.detailsLabel.text = @"3";
-    self.progressHud.detailsLabel.font = [UIFont fontWithName:@"AvenirNext-Bold" size:40];
-    self.progressHud.label.text = @"Recording in...";
-    self.progressHud.label.font = [UIFont fontWithName:@"AvenirNext-Bold" size:18];
+    self.progressHud.label.text = @"3";
+    self.progressHud.label.font = [UIFont fontWithName:@"AvenirNext-Bold" size:40];
     [self.progressHud showAnimated:YES];
     
 //    MBProgressHUD
@@ -189,13 +190,13 @@
 
 }
 - (void)showTwo{
-    self.progressHud.detailsLabel.text = @"2";
+    self.progressHud.label.text = @"2";
     [self performSelector:@selector(showOne) withObject:nil afterDelay:1.0];
 
 }
 
 - (void)showOne {
-    self.progressHud.detailsLabel.text = @"1";
+    self.progressHud.label.text = @"1";
     [self performSelector:@selector(hideProgressHud) withObject:nil afterDelay:1.2];
     [self performSelector:@selector(runRecordPrep) withObject:nil afterDelay:1.5];
 }

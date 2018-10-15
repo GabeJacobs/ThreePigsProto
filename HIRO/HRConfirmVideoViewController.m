@@ -189,7 +189,8 @@
             strImageName= [NSString stringWithFormat:@"%@0%i",prefix, i];
         }
         //        NSLog(@"%@",strImageName);
-        UIImage *image= [UIImage imageNamed:strImageName];
+//        UIImage *image= [UIImage imageNamed:strImageName];
+        UIImage *image = [UIImage imageWithContentsOfFile:[[NSBundle mainBundle] pathForResource:[NSString stringWithFormat:@"%@.png",strImageName] ofType:nil]];
 
         [ self.imageArray addObject:image];
     }
