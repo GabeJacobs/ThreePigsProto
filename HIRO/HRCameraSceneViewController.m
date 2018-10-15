@@ -101,7 +101,7 @@
     [self.animatedImageView setImage:preloadedImage];
     self.animatedImageView.frame = self.view.frame;
     self.animatedImageView.hidden = YES;
-    self.animatedImageView.animationRepeatCount = 1;
+//    self.animatedImageView.animationRepeatCount = 1;
     [self loadImages];
     [self.view addSubview:self.animatedImageView];
 
