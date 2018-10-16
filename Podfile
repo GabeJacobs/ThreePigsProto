@@ -18,4 +18,5 @@ target 'HIRO' do
   pod 'Fabric'
   pod 'Crashlytics'
   pod 'MBProgressHUD'
+  pod 'MCAnimationView'
 end

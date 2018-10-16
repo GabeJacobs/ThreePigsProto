@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import <AVFoundation/AVFoundation.h>
-#import "MBAnimationView.h"
+#import <MCAnimationView.h>
 
 @interface HRWatchMovieViewController : UIViewController <UITextFieldDelegate>
 

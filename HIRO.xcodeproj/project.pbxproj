@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		2315855E21023E51006AE508 /* HRBookPageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2315855D21023E51006AE508 /* HRBookPageViewController.m */; };
 		2319C26C211B907C00FCA3FE /* HRConfirmVideoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2319C26B211B907C00FCA3FE /* HRConfirmVideoViewController.m */; };
-		23576E4C217501F100A4C0EE /* MBAnimationView.m in Sources */ = {isa = PBXBuildFile; fileRef = 23576E4A217501F000A4C0EE /* MBAnimationView.m */; };
 		2368F19B212CB2B8002DC500 /* HRReadyToWatchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2368F199212CB2B8002DC500 /* HRReadyToWatchViewController.m */; };
 		2368F19E212CB616002DC500 /* HRWatchMovieViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2368F19D212CB616002DC500 /* HRWatchMovieViewController.m */; };
 		2368F1A1212DDE4D002DC500 /* HRFileManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 2368F1A0212DDE4D002DC500 /* HRFileManager.m */; };
@@ -229,8 +228,6 @@
 		2315855D21023E51006AE508 /* HRBookPageViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HRBookPageViewController.m; sourceTree = "<group>"; };
 		2319C26A211B907C00FCA3FE /* HRConfirmVideoViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HRConfirmVideoViewController.h; sourceTree = "<group>"; };
 		2319C26B211B907C00FCA3FE /* HRConfirmVideoViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HRConfirmVideoViewController.m; sourceTree = "<group>"; };
-		23576E4A217501F000A4C0EE /* MBAnimationView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MBAnimationView.m; path = "../../Downloads/animation-view-master/MBAnimationView.m"; sourceTree = "<group>"; };
-		23576E4B217501F000A4C0EE /* MBAnimationView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MBAnimationView.h; path = "../../Downloads/animation-view-master/MBAnimationView.h"; sourceTree = "<group>"; };
 		2368F196212CB270002DC500 /* HRReadyToWatchViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HRReadyToWatchViewController.h; sourceTree = "<group>"; };
 		2368F199212CB2B8002DC500 /* HRReadyToWatchViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HRReadyToWatchViewController.m; sourceTree = "<group>"; };
 		2368F19C212CB616002DC500 /* HRWatchMovieViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HRWatchMovieViewController.h; sourceTree = "<group>"; };
@@ -699,8 +696,6 @@
 				2368F317212F3A17002DC500 /* Straw */,
 				23CC1A6B20D4511B00AB6E51 /* HIRO */,
 				23CC1A6A20D4511B00AB6E51 /* Products */,
-				23576E4B217501F000A4C0EE /* MBAnimationView.h */,
-				23576E4A217501F000A4C0EE /* MBAnimationView.m */,
 				D3CFD524D40F8EED2C85F8B3 /* Pods */,
 				7A0AF09ABB4CEE8E341AA170 /* Frameworks */,
 			);
@@ -1116,7 +1111,6 @@
 				23CC1A6E20D4511B00AB6E51 /* AppDelegate.m in Sources */,
 				2319C26C211B907C00FCA3FE /* HRConfirmVideoViewController.m in Sources */,
 				2368F1C2212EF7CC002DC500 /* HRSavedVideosViewController.m in Sources */,
-				23576E4C217501F100A4C0EE /* MBAnimationView.m in Sources */,
 				2368F19E212CB616002DC500 /* HRWatchMovieViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

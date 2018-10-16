@@ -36,6 +36,7 @@
     return self;
 }
 
+
 - (void)viewDidLoad {
     
     [super viewDidLoad];
@@ -88,6 +89,10 @@
     [self.countdownLabel setTextColor:[UIColor whiteColor]];
     [self.countdownView addSubview:self.countdownLabel];
     
+
+}
+
+- (void)loadImages {
     
     self.animatedImageView = [[UIImageView alloc] init];
     UIImage *preloadedImage = [UIImage imageNamed:@"Straw House 10FPS00"];
@@ -101,21 +106,9 @@
     [self.animatedImageView setImage:preloadedImage];
     self.animatedImageView.frame = self.view.frame;
     self.animatedImageView.hidden = YES;
-//    self.animatedImageView.animationRepeatCount = 1;
-    [self loadImages];
-    [self.view addSubview:self.animatedImageView];
+    self.animatedImageView.animationRepeatCount = 1;
 
-    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-    dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, 0.01 * NSEC_PER_SEC);
-    dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
-        self.animatedImageView.hidden = YES;
-        [self.animatedImageView startAnimating];
-        [MBProgressHUD hideHUDForView:self.view animated:YES];
-    });
     
-}
-
-- (void)loadImages {
     self.imagesLoaded = [NSMutableArray array];
     NSString *prefix = @"Straw House 10FPS";
     int numImages = 52;
@@ -139,17 +132,27 @@
         }
 
         UIImage *image= [UIImage imageNamed:strImageName];
-//        UIImage *image = [UIImage imageWithContentsOfFile:[[NSBundle mainBundle] pathForResource:[NSString stringWithFormat:@"%@.png",strImageName] ofType:nil]];
         [self.imagesLoaded addObject:image];
     }
     self.animatedImageView.animationImages = self.imagesLoaded;
 
+    [self.view addSubview:self.animatedImageView];
+    
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, 0.01 * NSEC_PER_SEC);
+    dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
+        self.animatedImageView.hidden = YES;
+        [self.animatedImageView startAnimating];
+        [MBProgressHUD hideHUDForView:self.view animated:YES];
+    });
 }
 
 
 - (void)viewWillAppear:(BOOL)animated {
     self.navigationController.navigationBar.hidden = YES;
     [self reset];
+    [self loadImages];
+
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
@@ -290,6 +293,11 @@
 }
 
 - (void)reset{
+    self.imagesLoaded = nil;
+    [self.animatedImageView stopAnimating];
+    [self.animatedImageView removeFromSuperview];
+    [self.view.layer removeAllAnimations];
+    self.animatedImageView = nil;
     self.countdownView.hidden = YES;
     self.recordButton.hidden = NO;
     self.switchCamera.hidden = NO;

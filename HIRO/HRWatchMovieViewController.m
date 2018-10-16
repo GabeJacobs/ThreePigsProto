@@ -290,6 +290,7 @@
         }
     
         [self.animatedView setAnimationDuration:duration];
+        [self.view addSubview:self.animatedView];
         [self.animatedView startAnimating];
         self.animatedView.hidden = NO;
         if(self.sceneNumber == 1) {
@@ -351,6 +352,7 @@
 -(void)hideGif{
     self.animatedView.hidden = YES;
     [self.animatedView stopAnimating];
+    [self.animatedView removeFromSuperview];
 }
 
 - (NSURL *)applicationDocumentsDirectory {

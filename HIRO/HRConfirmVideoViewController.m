@@ -154,6 +154,8 @@
 //        HRBookPageViewController *pageOne = [[HRBookPageViewController alloc] initWithPage:10];
 //        [self.navigationController pushViewController:pageOne animated:YES];
     }
+    
+    [self reset];
 }
 
 
@@ -195,6 +197,12 @@
     }
 }
 
+- (void)reset {
+    self.imageArray = nil;
+    [self.animatedImageView stopAnimating];
+    [self.animatedImageView removeFromSuperview];
+    self.animatedImageView = nil;
 
+}
 
 @end

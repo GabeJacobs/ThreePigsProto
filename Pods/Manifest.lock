@@ -10,6 +10,11 @@ PODS:
   - LLSimpleCamera (5.0.0)
   - LLVideoEditor (1.0.0)
   - MBProgressHUD (1.1.0)
+  - MCAnimationView (0.1.1):
+    - MCUIImageAdvanced
+  - MCUIImageAdvanced (0.2.7):
+    - MGImageUtilities
+  - MGImageUtilities (0.0.1)
   - SIAlertView (1.3)
   - SVProgressHUD (2.2.5)
   - YYCache (1.0.4)
@@ -29,6 +34,7 @@ DEPENDENCIES:
   - LLSimpleCamera
   - LLVideoEditor (~> 1.0)
   - MBProgressHUD
+  - MCAnimationView
   - SIAlertView
   - SVProgressHUD
   - YYWebImage
@@ -43,6 +49,9 @@ SPEC REPOS:
     - LLSimpleCamera
     - LLVideoEditor
     - MBProgressHUD
+    - MCAnimationView
+    - MCUIImageAdvanced
+    - MGImageUtilities
     - SIAlertView
     - SVProgressHUD
     - YYCache
@@ -58,12 +67,15 @@ SPEC CHECKSUMS:
   LLSimpleCamera: 7175ccb81be71c83d79933089322eb662b1f0327
   LLVideoEditor: f287ea4a532dade2b40ba042c80bf76a546325e5
   MBProgressHUD: e7baa36a220447d8aeb12769bf0585582f3866d9
+  MCAnimationView: 12cad0fa81fa13b1043aa8cafa4d4db537c722de
+  MCUIImageAdvanced: fbc5873532933a17317fa02b45daf715565b8608
+  MGImageUtilities: 73c885bf04fd7b21b11fbd132606e05200b12bf7
   SIAlertView: 20c794b55eaf44d888773ea51647cf8907723919
   SVProgressHUD: 1428aafac632c1f86f62aa4243ec12008d7a51d6
   YYCache: 8105b6638f5e849296c71f331ff83891a4942952
   YYImage: 1e1b62a9997399593e4b9c4ecfbbabbf1d3f3b54
   YYWebImage: 5f7f36aee2ae293f016d418c7d6ba05c4863e928
 
-PODFILE CHECKSUM: 4449cc1f91c3f9d6bd6add3456d67cdae7c24c31
+PODFILE CHECKSUM: 51972828c3eeacf7acb42b516857ec2b57a2069d
 
 COCOAPODS: 1.5.3
