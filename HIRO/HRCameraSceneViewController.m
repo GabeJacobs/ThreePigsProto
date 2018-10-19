@@ -101,13 +101,14 @@
     [self.animatedImageView setImage:preloadedImage];
     self.animatedImageView.frame = self.view.frame;
     self.animatedImageView.hidden = YES;
-//    self.animatedImageView.animationRepeatCount = 1;
-    [self loadImages];
-    [self.view addSubview:self.animatedImageView];
+    self.animatedImageView.animationRepeatCount = 1;
 
     [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, 0.01 * NSEC_PER_SEC);
     dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
+        [self loadImages];
+        [self.view addSubview:self.animatedImageView];
+
         self.animatedImageView.hidden = YES;
         [self.animatedImageView startAnimating];
         [MBProgressHUD hideHUDForView:self.view animated:YES];
@@ -116,7 +117,7 @@
 }
 
 - (void)loadImages {
-    self.imagesLoaded = [NSMutableArray array];
+    NSMutableArray *imagesLoaded = [NSMutableArray array];
     NSString *prefix = @"Straw House 10FPS";
     int numImages = 52;
     if(self.sceneNumber == 2){
@@ -139,10 +140,20 @@
         }
 
         UIImage *image= [UIImage imageNamed:strImageName];
+        
+        CGRect rect = CGRectMake(0,0,image.size.width/1.4,image.size.height/1.4);
+        UIGraphicsBeginImageContext( rect.size );
+        [image drawInRect:rect];
+        UIImage *picture1 = UIGraphicsGetImageFromCurrentImageContext();
+        UIGraphicsEndImageContext();
+        
+        NSData *imageData = UIImagePNGRepresentation(picture1);
+        UIImage *img=[UIImage imageWithData:imageData];
+        image = nil;
 //        UIImage *image = [UIImage imageWithContentsOfFile:[[NSBundle mainBundle] pathForResource:[NSString stringWithFormat:@"%@.png",strImageName] ofType:nil]];
-        [self.imagesLoaded addObject:image];
+        [imagesLoaded addObject:img];
     }
-    self.animatedImageView.animationImages = self.imagesLoaded;
+    self.animatedImageView.animationImages = imagesLoaded;
 
 }
 
@@ -216,6 +227,7 @@
     }
     
     self.animatedImageView.animationDuration = duration;
+//    self.animatedImageView.animationRepeatCount = 1;
 //    [self.animatedImageView startAnimating];
     
     self.recordButton.hidden = YES;

@@ -41,6 +41,8 @@
 @property (strong, nonatomic) UIImageView *firstFrameView;
 @property (nonatomic, strong) UIImageView *animatedImageView;
 
+@property (nonatomic, strong) NSMutableArray *imagesLoaded;
+
 @property (nonatomic, strong) MBProgressHUD *progressHud;
 
 @end

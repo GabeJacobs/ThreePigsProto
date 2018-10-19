@@ -189,9 +189,21 @@
             strImageName= [NSString stringWithFormat:@"%@0%i",prefix, i];
         }
         //        NSLog(@"%@",strImageName);
+        
         UIImage *image= [UIImage imageNamed:strImageName];
 
-        [ self.imageArray addObject:image];
+        CGRect rect = CGRectMake(0,0,image.size.width/1.4,image.size.height/1.4);
+        UIGraphicsBeginImageContext( rect.size );
+        [image drawInRect:rect];
+        UIImage *picture1 = UIGraphicsGetImageFromCurrentImageContext();
+        UIGraphicsEndImageContext();
+        
+        NSData *imageData = UIImagePNGRepresentation(picture1);
+        UIImage *img=[UIImage imageWithData:imageData];
+        image = nil;
+        
+
+        [ self.imageArray addObject:img];
     }
 }
 
