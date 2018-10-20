@@ -15,6 +15,7 @@
 #import <LLSimpleCamera.h>
 #import "FLAnimatedImage.h"
 #import <MBProgressHUD.h>
+#import "HRAnimationFileManager.h"
 
 @interface HRCameraSceneViewController : UIViewController
 

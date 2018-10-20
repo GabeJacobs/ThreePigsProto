@@ -10,6 +10,7 @@
 #import "HRBookPageViewController.h"
 #import "HRReadyToWatchViewController.h"
 #import "HRFileManager.h"
+#import "HRAnimationFileManager.h"
 
 @interface HRConfirmVideoViewController ()
 
@@ -33,7 +34,6 @@
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [self loadImages];
     
     self.view.backgroundColor = [UIColor whiteColor];
     
@@ -67,30 +67,28 @@
     self.animatedImageView = [[UIImageView alloc] init];
     self.animatedImageView.frame = self.videoLayer.frame;
 
-  
-    float duration = 5.2f;
+    UIImage *preloadedImage = [UIImage imageNamed:@"Straw House 10FPS00"];
     if(self.sceneNumber == 2){
-        duration = 5.1f;
+        preloadedImage = [UIImage imageNamed:@"Stick House 10 FPS00"];
     } else if(self.sceneNumber == 3){
-        duration = 5.2f;
+        preloadedImage = [UIImage imageNamed:@"Brick House 10FPS00"];
     }  else if(self.sceneNumber == 4){
+        preloadedImage = [UIImage imageNamed:@"The End 10 FPS00"];
+    }
+    [self.animatedImageView setImage:preloadedImage];
+    
+    
+    float duration = 5.2f;
+    if(self.sceneNumber == 4){
         duration = 3.6f;
     }
+    self.animatedImageView.animationRepeatCount = 1;
     self.animatedImageView.animationImages = self.imageArray;
     self.animatedImageView.animationDuration = duration;
+    [self loadImages];
     [self.animatedImageView startAnimating];
     [self.view addSubview:self.animatedImageView];
     
-//    FLAnimatedImage *image = [FLAnimatedImage animatedImageWithGIFData:data];
-//
-//    self.animatedView = [[FLAnimatedImageView alloc] init];
-//    self.animatedView.animatedImage = image;
-//    [self.animatedView setAnimationDuration:5.16];
-//    self.animatedView.frame = self.videoLayer.frame;
-//    self.animatedView.runLoopMode = NSDefaultRunLoopMode;
-//    [self.view addSubview:self.animatedView];
-    
-
 }
 
 - (void)didReceiveMemoryWarning {
@@ -99,15 +97,6 @@
 }
 
 - (void)itemDidFinishPlaying:(NSNotification *)notification {
-//    [self.animatedView removeFromSuperview];
-    
-//    NSURL *imgPath = [[NSBundle mainBundle] URLForResource:[NSString stringWithFormat:@"SCENE%d", self.sceneNumber] withExtension:@"gif"];
-//    NSString *path = [imgPath path];
-//    NSData *data = [[NSFileManager defaultManager] contentsAtPath:path];
-//    FLAnimatedImage *image = [FLAnimatedImage animatedImageWithGIFData:data];
-
-    
-    [self.animatedImageView stopAnimating];
     
     AVPlayerItem *player = [notification object];
     [player seekToTime:kCMTimeZero];
@@ -151,8 +140,6 @@
         HRReadyToWatchViewController *rVC = [[HRReadyToWatchViewController alloc] init];
         [self.navigationController pushViewController:rVC animated:YES];
 
-//        HRBookPageViewController *pageOne = [[HRBookPageViewController alloc] initWithPage:10];
-//        [self.navigationController pushViewController:pageOne animated:YES];
     }
 }
 
@@ -163,50 +150,15 @@
 }
 
 - (void)loadImages{
-   self.imageArray =[NSMutableArray array];
-    NSString *prefix = @"Straw House 10FPS";
-    float duration = 5.2f;
-    int numImages = 52;
-    if(self.sceneNumber == 2){
-        prefix = @"Stick House 10 FPS";
-        duration = 5.1f;
-        numImages = 51;
+    if(self.sceneNumber == 1){
+        self.animatedImageView.animationImages = [[HRAnimationFileManager sharedManager] getStrawFiles];
+    } else if(self.sceneNumber == 2){
+        self.animatedImageView.animationImages = [[HRAnimationFileManager sharedManager] getStickFiles];
     } else if(self.sceneNumber == 3){
-        prefix = @"Brick House 10FPS";
-        duration = 5.2f;
-        numImages = 52;
-    }  else if(self.sceneNumber == 4){
-        prefix = @"The End 10 FPS";
-        duration = 3.6f;
-        numImages = 36;
-    }
-    
-    for (int i=0; i<numImages; i++){
-        NSString *strImageName;
-        if(i >= 10){
-            strImageName= [NSString stringWithFormat:@"%@%i",prefix, i];
-        } else{
-            strImageName= [NSString stringWithFormat:@"%@0%i",prefix, i];
-        }
-        //        NSLog(@"%@",strImageName);
-        
-        UIImage *image= [UIImage imageNamed:strImageName];
-
-        CGRect rect = CGRectMake(0,0,image.size.width/1.4,image.size.height/1.4);
-        UIGraphicsBeginImageContext( rect.size );
-        [image drawInRect:rect];
-        UIImage *picture1 = UIGraphicsGetImageFromCurrentImageContext();
-        UIGraphicsEndImageContext();
-        
-        NSData *imageData = UIImagePNGRepresentation(picture1);
-        UIImage *img=[UIImage imageWithData:imageData];
-        image = nil;
-        
-
-        [ self.imageArray addObject:img];
+        self.animatedImageView.animationImages = [[HRAnimationFileManager sharedManager] getBrickFiles];
+    } else if(self.sceneNumber == 4){
+        self.animatedImageView.animationImages = [[HRAnimationFileManager sharedManager] getEndFiles];
     }
 }
-
-
 
 @end

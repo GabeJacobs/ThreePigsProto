@@ -92,7 +92,7 @@
     self.animatedImageView = [[UIImageView alloc] init];
     UIImage *preloadedImage = [UIImage imageNamed:@"Straw House 10FPS00"];
     if(self.sceneNumber == 2){
-        preloadedImage = [UIImage imageNamed:@"Stick House 10 FPS01"];
+        preloadedImage = [UIImage imageNamed:@"Stick House 10 FPS00"];
     } else if(self.sceneNumber == 3){
         preloadedImage = [UIImage imageNamed:@"Brick House 10FPS00"];
     }  else if(self.sceneNumber == 4){
@@ -101,59 +101,21 @@
     [self.animatedImageView setImage:preloadedImage];
     self.animatedImageView.frame = self.view.frame;
     self.animatedImageView.hidden = YES;
-    self.animatedImageView.animationRepeatCount = 1;
-
-    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-    dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, 0.01 * NSEC_PER_SEC);
-    dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
-        [self loadImages];
-        [self.view addSubview:self.animatedImageView];
-
-        self.animatedImageView.hidden = YES;
-        [self.animatedImageView startAnimating];
-        [MBProgressHUD hideHUDForView:self.view animated:YES];
-    });
+    [self loadImages];
+    [self.view addSubview:self.animatedImageView];
     
 }
 
 - (void)loadImages {
-    NSMutableArray *imagesLoaded = [NSMutableArray array];
-    NSString *prefix = @"Straw House 10FPS";
-    int numImages = 52;
-    if(self.sceneNumber == 2){
-        prefix = @"Stick House 10 FPS";
-        numImages = 51;
+    if(self.sceneNumber == 1){
+        self.animatedImageView.animationImages = [[HRAnimationFileManager sharedManager] getStrawFiles];
+    } else if(self.sceneNumber == 2){
+        self.animatedImageView.animationImages = [[HRAnimationFileManager sharedManager] getStickFiles];
     } else if(self.sceneNumber == 3){
-        prefix = @"Brick House 10FPS";
-        numImages = 52;
-    }  else if(self.sceneNumber == 4){
-        prefix = @"The End 10 FPS";
-        numImages = 36;
+        self.animatedImageView.animationImages = [[HRAnimationFileManager sharedManager] getBrickFiles];
+    } else if(self.sceneNumber == 4){
+        self.animatedImageView.animationImages = [[HRAnimationFileManager sharedManager] getEndFiles];
     }
-    
-    for (int i=0; i<numImages; i++){
-        NSString *strImageName;
-        if(i >= 10){
-            strImageName= [NSString stringWithFormat:@"%@%i",prefix, i];
-        } else{
-            strImageName= [NSString stringWithFormat:@"%@0%i",prefix, i];
-        }
-
-        UIImage *image= [UIImage imageNamed:strImageName];
-        
-        CGRect rect = CGRectMake(0,0,image.size.width/1.4,image.size.height/1.4);
-        UIGraphicsBeginImageContext( rect.size );
-        [image drawInRect:rect];
-        UIImage *picture1 = UIGraphicsGetImageFromCurrentImageContext();
-        UIGraphicsEndImageContext();
-        
-        NSData *imageData = UIImagePNGRepresentation(picture1);
-        UIImage *img=[UIImage imageWithData:imageData];
-        image = nil;
-//        UIImage *image = [UIImage imageWithContentsOfFile:[[NSBundle mainBundle] pathForResource:[NSString stringWithFormat:@"%@.png",strImageName] ofType:nil]];
-        [imagesLoaded addObject:img];
-    }
-    self.animatedImageView.animationImages = imagesLoaded;
 
 }
 
@@ -191,11 +153,6 @@
     self.progressHud.label.font = [UIFont fontWithName:@"AvenirNext-Bold" size:18];
     [self.progressHud showAnimated:YES];
     
-//    MBProgressHUD
-////    SVProgressHUD setInfoImage:
-////    [SVProgressHUD setFont:[UIFont preferredFontForTextStyle:UIFontTextStyleHeadline]];
-////    [SVProgressHUD showWithStatus:@"3"];
-    
     [self performSelector:@selector(showTwo) withObject:nil afterDelay:1.0];
 
 }
@@ -218,18 +175,11 @@
 - (void)runRecordPrep {
 
     float duration = 5.2f;
-    if(self.sceneNumber == 2){
-        duration = 5.1f;
-    } else if(self.sceneNumber == 3){
-        duration = 5.2f;
-    }  else if(self.sceneNumber == 4){
+    if(self.sceneNumber == 4){
         duration = 3.6f;
     }
     
     self.animatedImageView.animationDuration = duration;
-//    self.animatedImageView.animationRepeatCount = 1;
-//    [self.animatedImageView startAnimating];
-    
     self.recordButton.hidden = YES;
     self.switchCamera.hidden = YES;
     
@@ -258,7 +208,6 @@
 
     [self.camera startRecordingWithOutputUrl:outputURL didRecord:^(LLSimpleCamera *camera, NSURL *outputFileUrl, NSError *error) {
 
-        
         double delayInSeconds = 0.15;
         dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, delayInSeconds * NSEC_PER_SEC);
         dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
@@ -270,7 +219,7 @@
         });
         
     }];
-    
+    [self.animatedImageView setAnimationRepeatCount:1];
     [self.animatedImageView startAnimating];
     self.animatedImageView.hidden = NO;
     self.countdownView.hidden = NO;

@@ -26,6 +26,10 @@
 @property (nonatomic) AVPlayerLayer *videoLayer;
 @property (nonatomic) int sceneNumber;
 
+
+@property (nonatomic) AVPlayer *avPlayerCamera;
+@property (nonatomic) AVPlayerLayer *videoLayerCamera;
+
 @property (nonatomic, strong) UIView *pausedOverlay;
 @property (nonatomic, strong) UIButton *playButton;
 @property (nonatomic, strong) UIButton *homeButton;
@@ -33,10 +37,6 @@
 @property (nonatomic) BOOL playingGIF;
 @property (nonatomic, strong) AVAudioPlayer *audioPlayer;
 
-@property (nonatomic, strong) NSMutableArray *imageArrayStraw;
-@property (nonatomic, strong) NSMutableArray *imageArrayStick;
-@property (nonatomic, strong) NSMutableArray *imageArrayBrick;
-@property (nonatomic, strong) NSMutableArray *imageArrayEnd;
 
 
 @end
