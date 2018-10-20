@@ -38,39 +38,39 @@
     [[NSNotificationCenter defaultCenter]
      postNotificationName:@"StopMusic"
      object:self];
+    
+    self.view.backgroundColor = [UIColor blackColor];
 
     self.sceneNumber = 1;
     self.playingGIF = NO;
     
-    self.view.backgroundColor = [UIColor blackColor];
-    
-    NSString *filePath = [[NSBundle mainBundle] pathForResource:@"Scene1" ofType:@"mp4"];
-    NSURL *videoURL = [NSURL fileURLWithPath:filePath];
-
-    self.avPlayer = [AVPlayer playerWithURL:videoURL];
-    self.avPlayer.actionAtItemEnd = AVPlayerActionAtItemEndNone;
-
-    self.videoLayer = [AVPlayerLayer playerLayerWithPlayer:self.avPlayer];
-    self.videoLayer.frame = self.view.frame;
-    self.videoLayer.videoGravity = AVLayerVideoGravityResizeAspectFill;
-    [self.view.layer addSublayer:self.videoLayer];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(itemDidFinishPlaying:) name:AVPlayerItemDidPlayToEndTimeNotification object:[self.avPlayer currentItem]];
-    [self.avPlayer play];
-    
-    
-    
     NSString *urlString = [self.video objectForKey:[NSString stringWithFormat:@"video%iUrl", self.sceneNumber]];
     NSURL *fileURL = [[[self applicationDocumentsDirectory] URLByAppendingPathComponent:urlString] URLByAppendingPathExtension:@"mov"];
-    AVURLAsset *asset = [AVURLAsset URLAssetWithURL:fileURL options:nil];
+
     self.avPlayerCamera = [AVPlayer playerWithURL:fileURL];
     self.avPlayerCamera.actionAtItemEnd = AVPlayerActionAtItemEndNone;
 
     self.videoLayerCamera = [AVPlayerLayer playerLayerWithPlayer:self.avPlayerCamera];
+    self.videoLayerCamera.hidden = YES;
+    
     self.videoLayerCamera.frame = self.view.frame;
     self.videoLayerCamera.videoGravity = AVLayerVideoGravityResizeAspectFill;
-    self.videoLayerCamera.hidden = YES;
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(cameraItemDidFinishPlaying:) name:AVPlayerItemDidPlayToEndTimeNotification object:[self.avPlayerCamera currentItem]];
     [self.view.layer addSublayer:self.videoLayerCamera];
+    
+    NSString *filePath = [[NSBundle mainBundle] pathForResource:@"Scene1" ofType:@"mp4"];
+    NSURL *videoURL = [NSURL fileURLWithPath:filePath];
+    
+    self.avPlayer = [AVPlayer playerWithURL:videoURL];
+    self.avPlayer.actionAtItemEnd = AVPlayerActionAtItemEndNone;
+    
+    self.videoLayer = [AVPlayerLayer playerLayerWithPlayer:self.avPlayer];
+    self.videoLayer.frame = self.view.frame;
+    self.videoLayer.hidden = YES;
+    self.videoLayer.videoGravity = AVLayerVideoGravityResizeAspectFill;
+    [self.view.layer addSublayer:self.videoLayer];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(itemDidFinishPlaying:) name:AVPlayerItemDidPlayToEndTimeNotification object:[self.avPlayer currentItem]];
+    [self.avPlayer play];
     
     self.pauseOverlayButton = [UIButton buttonWithType:UIButtonTypeCustom];
     self.pauseOverlayButton.frame = self.view.frame;
@@ -103,11 +103,13 @@
     [self.homeButton addTarget:self action:@selector(tappedHome) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:self.homeButton];
 
+    
     self.animatedView = [[UIImageView alloc] init];
     float duration = 5.2f;
     if(self.sceneNumber == 4){
         duration = 3.6f;
     }
+    [self.animatedView setImage:[UIImage imageNamed:@"Straw House 10FPS00"]];
     [self.animatedView setAnimationImages:[self getRightImageArray]];
     [self.animatedView setAnimationDuration:duration];
     self.animatedView.frame = self.videoLayer.frame;
@@ -117,6 +119,8 @@
     [self.animatedView setAnimationRepeatCount:1];
     [self.view addSubview:self.animatedView];
     
+    self.videoLayer.hidden = NO;
+
     // Do any additional setup after loading the view.
     
     /* Use this code to play an audio file */
@@ -134,8 +138,11 @@
     [self.view bringSubviewToFront:self.pausedOverlay];
     [self.view bringSubviewToFront:self.playButton];
     [self.view bringSubviewToFront:self.homeButton];
+    
     [self.audioPlayer pause];
     [self.avPlayer pause];
+    [self.avPlayerCamera pause];
+
     if(self.playingGIF){
         [self.animatedView stopAnimating];
     }
@@ -157,8 +164,8 @@
             
         } completion:^(BOOL finished) {
             [self.animatedView startAnimating];
-            [self.avPlayer seekToTime:kCMTimeZero];
-            [self.avPlayer play];
+            [self.avPlayerCamera seekToTime:kCMTimeZero];
+            [self.avPlayerCamera play];
             [self.audioPlayer play];
         }];
     } else{
@@ -242,9 +249,9 @@
 }
 
 - (void)cameraItemDidFinishPlaying:(NSNotification *)notification {
-    self.videoLayerCamera.hidden = YES;
-    self.videoLayer.hidden = NO;
     
+    [self.audioPlayer setVolume:1.0];
+
     if(self.sceneNumber != 5){
         NSString *urlString = [self.video objectForKey:[NSString stringWithFormat:@"video%iUrl", self.sceneNumber]];
         NSURL *fileURL = [[[self applicationDocumentsDirectory] URLByAppendingPathComponent:urlString] URLByAppendingPathExtension:@"mov"];
@@ -252,11 +259,11 @@
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(cameraItemDidFinishPlaying:) name:AVPlayerItemDidPlayToEndTimeNotification object:[self.avPlayerCamera currentItem]];
     }
     [self.avPlayerCamera pause];
-
-    [self.audioPlayer setVolume:1.0 fadeDuration:.2];
-    self.playingGIF = NO;
-
     [self.avPlayer play];
+    self.videoLayerCamera.hidden = YES;
+    self.videoLayer.hidden = NO;
+    
+    self.playingGIF = NO;
     
     [self performSelector:@selector(hideGif) withObject:nil afterDelay:.4];
     
@@ -273,33 +280,26 @@
         self.sceneNumber = 1;
         return;
     }
-    [self.view bringSubviewToFront:self.animatedView];
-
-    self.playingGIF = YES;
     [self.audioPlayer setVolume:.3 fadeDuration:.2];
-    
-    if(self.sceneNumber == 1) {
-        [self.animatedView setImage:[UIImage imageNamed:@"Straw House 10FPS00"]];
-    } else if(self.sceneNumber == 2) {
-        [self.animatedView setImage:[UIImage imageNamed:@"Stick House 10 FPS00"]];
-    } else if(self.sceneNumber == 3) {
-        [self.animatedView setImage:[UIImage imageNamed:@"Brick House 10FPS00"]];
-    } else if(self.sceneNumber == 4) {
-        [self.animatedView setImage:[UIImage imageNamed:@"The End 10 FPS00"]];
-    }
     [self.animatedView setAnimationImages:[self getRightImageArray]];
+    
     float duration = 5.2f;
+    if(self.sceneNumber == 2){
+        duration = 4.9f;
+    }
     if(self.sceneNumber == 4){
         duration = 3.6f;
     }
-    [self.animatedView setAnimationDuration:duration];
-    [self.animatedView startAnimating];
-
+    
     self.animatedView.hidden = NO;
     self.videoLayer.hidden = YES;
-    [self.view bringSubviewToFront:self.animatedView];
-
-    [self startVideo];
+    self.videoLayerCamera.hidden = NO;
+    
+    [self.animatedView setAnimationDuration:duration];
+    [self.animatedView startAnimating];
+    self.playingGIF = YES;
+    
+    [self.avPlayerCamera play];
     
     self.sceneNumber++;
     NSString *filePath = [[NSBundle mainBundle] pathForResource:[NSString stringWithFormat:@"Scene%d", self.sceneNumber] ofType:@"mp4"];
@@ -310,34 +310,19 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(itemDidFinishPlaying:) name:AVPlayerItemDidPlayToEndTimeNotification object:[self.avPlayer currentItem]];
 }
 
-- (void)startVideo {
-    
-    self.videoLayerCamera.hidden = NO;
-    [self.avPlayerCamera play];
-    
-//    NSString *urlString = [self.video objectForKey:[NSString stringWithFormat:@"video%iUrl", self.sceneNumber]];
-//    NSURL *fileURL = [[[self applicationDocumentsDirectory] URLByAppendingPathComponent:urlString] URLByAppendingPathExtension:@"mov"];
-//
-//    AVURLAsset *asset = [AVURLAsset URLAssetWithURL:fileURL options:nil];
-//    AVPlayerItem *playerItem = [AVPlayerItem playerItemWithAsset:asset];
-//
-//    [self.avPlayer replaceCurrentItemWithPlayerItem:playerItem];
-//    self.avPlayer.actionAtItemEnd = AVPlayerActionAtItemEndNone;
-//
-//    [[NSNotificationCenter defaultCenter] removeObserver:self];
-//    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(itemDidFinishPlaying:) name:AVPlayerItemDidPlayToEndTimeNotification object:[self.avPlayer currentItem]];
-//    [self.view bringSubviewToFront:self.animatedView];
-//    self.videoLayer.hidden = NO;
-    
-
-
-
-    
-}
-
 -(void)hideGif{
     self.animatedView.hidden = YES;
     [self.animatedView stopAnimating];
+    
+    if(self.sceneNumber == 1) {
+        [self.animatedView setImage:[UIImage imageNamed:@"Straw House 10FPS00"]];
+    } else if(self.sceneNumber == 2) {
+        [self.animatedView setImage:[UIImage imageNamed:@"Stick House 10 FPS00"]];
+    } else if(self.sceneNumber == 3) {
+        [self.animatedView setImage:[UIImage imageNamed:@"Brick House 10FPS00"]];
+    } else if(self.sceneNumber == 4) {
+        [self.animatedView setImage:[UIImage imageNamed:@"The End 10 FPS00"]];
+    }
 }
 
 - (NSURL *)applicationDocumentsDirectory {

@@ -22,6 +22,7 @@
 @property (nonatomic, strong) UIButton *pauseOverlayButton;
 
 @property (nonatomic) AVPlayer *avPlayer;
+@property (nonatomic) UIImageView *placeHolderAnimatedView;
 @property (nonatomic) UIImageView *animatedView;
 @property (nonatomic) AVPlayerLayer *videoLayer;
 @property (nonatomic) int sceneNumber;
