@@ -103,6 +103,15 @@
     self.animatedImageView.hidden = YES;
     [self loadImages];
     [self.view addSubview:self.animatedImageView];
+    [self.animatedImageView setAnimationRepeatCount:1];
+
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
+    dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, 0.01 * NSEC_PER_SEC);
+    dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
+        self.animatedImageView.hidden = YES;
+        [self.animatedImageView startAnimating];
+        [MBProgressHUD hideHUDForView:self.view animated:YES];
+    });
     
 }
 
