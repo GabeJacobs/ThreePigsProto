@@ -10,6 +10,7 @@
 #import "HRWatchMovieViewController.h"
 #import "HRFileManager.h"
 #import <SIAlertView.h>
+#import <FFmpegWrapper.h>
 
 @interface HRReadyToWatchViewController ()
 
@@ -105,14 +106,31 @@
 
 - (void)tappedConfirm{
     NSDictionary *videoDict = [[HRFileManager sharedManager] getTempVideo];
-    HRWatchMovieViewController *watch  = [[HRWatchMovieViewController alloc] initWithVideo:videoDict alreadySaved:NO];
-    [self.navigationController pushViewController:watch animated:YES];
+
+    NSString *urlString = [videoDict objectForKey:[NSString stringWithFormat:@"video%iUrl", 1]];
+    NSString *urlStringExt = [NSString stringWithFormat:@"%@%@", [[self applicationDocumentsDirectory] URLByAppendingPathComponent:urlString],@".mov"];
+
+    FFmpegWrapper *wrapper = [[FFmpegWrapper alloc] init];
+    [wrapper convertInputPath:urlString outputPath:urlStringExt options:@{kFFmpegInputFormatKey: @"mov", kFFmpegOutputFormatKey: @"mov"} progressBlock:^(NSUInteger bytesRead, uint64_t totalBytesRead, uint64_t totalBytesExpectedToRead) {
+        
+    } completionBlock:^(BOOL success, NSError *error) {
+        
+    }];
+    
+//    HRWatchMovieViewController *watch  = [[HRWatchMovieViewController alloc] initWithVideo:videoDict alreadySaved:NO];
+//    [self.navigationController pushViewController:watch animated:YES];
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
+- (NSURL *)applicationDocumentsDirectory {
+    return [[[NSFileManager defaultManager] URLsForDirectory:NSDocumentDirectory
+                                                   inDomains:NSUserDomainMask] lastObject];
+}
+
 
 /*
 #pragma mark - Navigation

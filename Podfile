@@ -8,6 +8,7 @@ target 'HIRO' do
   # Pods for HIRO
   
   pod "FastttCamera"
+  pod 'FFmpegWrapper'
   pod "GPUImage"
   pod "SVProgressHUD"
   pod "LLSimpleCamera"

@@ -5,6 +5,11 @@ PODS:
   - FastttCamera (0.3.4):
     - FastttCamera/Default (= 0.3.4)
   - FastttCamera/Default (0.3.4)
+  - FFmpeg (2.8.3):
+    - FFmpeg/precompiled (= 2.8.3)
+  - FFmpeg/precompiled (2.8.3)
+  - FFmpegWrapper (1.0):
+    - FFmpeg (~> 2.2)
   - FLAnimatedImage (1.0.12)
   - GPUImage (0.1.7)
   - LLSimpleCamera (5.0.0)
@@ -24,6 +29,7 @@ DEPENDENCIES:
   - Crashlytics
   - Fabric
   - FastttCamera
+  - FFmpegWrapper
   - FLAnimatedImage (~> 1.0)
   - GPUImage
   - LLSimpleCamera
@@ -38,6 +44,8 @@ SPEC REPOS:
     - Crashlytics
     - Fabric
     - FastttCamera
+    - FFmpeg
+    - FFmpegWrapper
     - FLAnimatedImage
     - GPUImage
     - LLSimpleCamera
@@ -53,6 +61,8 @@ SPEC CHECKSUMS:
   Crashlytics: 0360624eea1c978a743feddb2fb1ef8b37fb7a0d
   Fabric: bda89e242bce1b7b8ab264248cf3407774ce0095
   FastttCamera: 51f16712cbd5bdb08bc6231b957325c6be5e478d
+  FFmpeg: f1428c3b60b5f9e349fcd5d7878705cd7f9a26f6
+  FFmpegWrapper: 9a932581137d17203e842ce942e171158336ae16
   FLAnimatedImage: 4a0b56255d9b05f18b6dd7ee06871be5d3b89e31
   GPUImage: 733a5f0fab92df9de1c37ba9df520a833ccb406d
   LLSimpleCamera: 7175ccb81be71c83d79933089322eb662b1f0327
@@ -64,6 +74,6 @@ SPEC CHECKSUMS:
   YYImage: 1e1b62a9997399593e4b9c4ecfbbabbf1d3f3b54
   YYWebImage: 5f7f36aee2ae293f016d418c7d6ba05c4863e928
 
-PODFILE CHECKSUM: 4449cc1f91c3f9d6bd6add3456d67cdae7c24c31
+PODFILE CHECKSUM: fce0354f7141287922a4f0c1dfcafc82ff7b1739
 
 COCOAPODS: 1.5.3
